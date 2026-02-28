@@ -1,22 +1,13 @@
-# Navigation menu for the website
-# Only essential sections are enabled
-
+# main links links
 main:
-  - title: "Publications"
-    url: /publications/
-        
   - title: "Blog Posts"
     url: /year-archive/
     
-  - title: "CV"
-    url: /cv/
+  # - title: "Publications"
+  #   url: /publications/
+
+  # - title: "CV"
+  #   url: /cv/
     
-  # Sections currently hidden:
-  # - title: "Talks"
-  #   url: /talks/    
-  # - title: "Teaching"
-  #   url: /teaching/    
-  # - title: "Portfolio"
-  #   url: /portfolio/
-  # - title: "Guide"
-  #   url: /markdown/
+  - title: "Guide"
+    url: /markdown/
