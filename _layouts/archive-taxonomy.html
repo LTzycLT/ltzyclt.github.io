@@ -1,19 +1,71 @@
 ---
 layout: default
 author_profile: true
-sidebar:
-  - title: "{{ page.title }}"
-    text: "Browse all {{ page.type }} in this section."
 ---
 
 <div id="main" role="main">
   {% include sidebar.html %}
 
-  <div class="archive">
-    <h1 class="page__title">{{ page.title }}</h1>
-    {% include base_path %}
-    {% for post in page.posts %}
-      {% include archive-single.html %}
-    {% endfor %}
+  <div class="archive-content">
+    <article class="archive">
+      <h1 class="page__title">{{ page.title }}</h1>
+
+      {% if page.type == "tags" %}
+        <h2>All Tags</h2>
+        <div class="tag-cloud">
+          {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }},{% endfor %}{% endcapture %}
+          {% assign sorted_tags = site_tags | split: ',' | sort %}
+          {% for tag in sorted_tags %}
+            {% if tag != "" %}
+              <a href="/tags/{{ tag | slugify }}/" class="tag-link{% if page.title == tag %} active{% endif %}">{{ tag }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% elsif page.type == "categories" %}
+        <h2>All Categories</h2>
+        <ul class="category-list">
+          {% capture site_categories %}{% for category in site.categories %}{{ category[0] }},{% endfor %}{% endcapture %}
+          {% assign sorted_categories = site_categories | split: ',' | sort %}
+          {% for category in sorted_categories %}
+            {% if category != "" %}
+              <li><a href="/categories/{{ category | slugify }}/">{{ category }}</a> ({{ site.categories[category].size }})</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <hr>
+
+      <h2>{{ page.title }} Posts</h2>
+      {% include base_path %}
+      {% for post in page.posts %}
+        {% include archive-single.html %}
+      {% endfor %}
+    </article>
   </div>
+
+  <aside class="sidebar__right">
+    <h3>{{ page.type | capitalize }}</h3>
+    <nav class="sidebar-nav">
+      <ul>
+        {% if page.type == "tags" %}
+          {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }},{% endfor %}{% endcapture %}
+          {% assign sorted_tags = site_tags | split: ',' | sort %}
+          {% for tag in sorted_tags %}
+            {% if tag != "" %}
+              <li><a href="/tags/{{ tag | slugify }}/" {% if page.title == tag %}class="active"{% endif %}>{{ tag }}</a></li>
+            {% endif %}
+          {% endfor %}
+        {% elsif page.type == "categories" %}
+          {% capture site_categories %}{% for category in site.categories %}{{ category[0] }},{% endfor %}{% endcapture %}
+          {% assign sorted_categories = site_categories | split: ',' | sort %}
+          {% for category in sorted_categories %}
+            {% if category != "" %}
+              <li><a href="/categories/{{ category | slugify }}/" {% if page.title == category %}class="active"{% endif %}>{{ category }}</a></li>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </nav>
+  </aside>
 </div>
