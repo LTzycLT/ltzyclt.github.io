@@ -321,7 +321,6 @@ plugins:
   - jekyll-redirect-from
   - jemoji
   - jekyll-archives
-  - jekyll-archives
 
 
 # Mimic GitHub Pages with --safe
@@ -332,7 +331,6 @@ whitelist:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
-  - jekyll-archives
   - jekyll-archives
 
 
