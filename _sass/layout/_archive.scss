@@ -250,38 +250,45 @@
    ========================================================================== */
 
 .archive-page {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   gap: 2em;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
 
   @include breakpoint($large) {
     flex-direction: row;
   }
 
+  > .archive-sidebar {
+    order: 1;
+    min-width: 200px;
+
+    @include breakpoint($large) {
+      width: 200px;
+      flex-shrink: 0;
+    }
+  }
+
   > .archive-content {
-    // Override default archive layout when inside archive-page
+    order: 2;
+    flex: 1;
+    min-width: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+
     @include breakpoint($medium) {
-      @include span(12 of 12);
+      width: 100% !important;
     }
 
     @include breakpoint($large) {
-      @include span(12 of 12);
+      width: calc(100% - 220px) !important;
     }
   }
-}
-
-.archive-sidebar {
-  min-width: 200px;
-
-  @include breakpoint($large) {
-    width: 200px;
-    flex-shrink: 0;
-  }
-}
-
-.archive-content {
-  flex: 1;
-  min-width: 0;
 }
 
 
