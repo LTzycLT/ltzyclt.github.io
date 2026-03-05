@@ -2,12 +2,19 @@
 main:
   - title: "Blog Posts"
     url: /year-archive/
-    
+
   # - title: "Publications"
   #   url: /publications/
 
   # - title: "CV"
   #   url: /cv/
-    
+
   - title: "Guide"
     url: /markdown/
+
+# archive navigation
+archive-nav:
+  - title: "Tags"
+    url: /tags/
+  - title: "Categories"
+    url: /categories/
