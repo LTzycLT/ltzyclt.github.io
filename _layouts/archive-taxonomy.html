@@ -10,46 +10,12 @@ author_profile: true
     <article class="archive">
       <h1 class="page__title">{{ page.title }}</h1>
 
-      {% if page.type == "tags" %}
-        <h2>All Tags</h2>
-        <div class="tag-cloud">
-          {% for tag in site.tags %}
-            <a href="/tags/{{ tag[0] | slugify }}/" class="tag-link">{{ tag[0] }}</a>
-          {% endfor %}
-        </div>
-      {% elsif page.type == "categories" %}
-        <h2>All Categories</h2>
-        <ul class="category-list">
-          {% for category in site.categories %}
-            <li><a href="/categories/{{ category[0] | slugify }}/">{{ category[0] }}</a> ({{ category[1].size }})</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-
       <hr>
 
-      <h2>{{ page.title }} Posts</h2>
       {% include base_path %}
       {% for post in page.posts %}
         {% include archive-single.html %}
       {% endfor %}
     </article>
   </div>
-
-  <aside class="sidebar__right">
-    <h3>{{ page.type | capitalize }}</h3>
-    <nav class="sidebar-nav">
-      <ul>
-        {% if page.type == "tags" %}
-          {% for tag in site.tags %}
-            <li><a href="/tags/{{ tag[0] | slugify }}/">{{ tag[0] }}</a></li>
-          {% endfor %}
-        {% elsif page.type == "categories" %}
-          {% for category in site.categories %}
-            <li><a href="/categories/{{ category[0] | slugify }}/">{{ category[0] }}</a></li>
-          {% endfor %}
-        {% endif %}
-      </ul>
-    </nav>
-  </aside>
 </div>

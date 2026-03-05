@@ -8,18 +8,26 @@ author_profile: true
 <div id="main" role="main">
   {% include sidebar.html %}
 
-  <div class="archive">
-    <h1 class="page__title">{{ page.title }}</h1>
+  <div class="archive-content">
+    <article class="archive">
+      <h1 class="page__title">{{ page.title }}</h1>
 
-    {% capture site_categories %}{% for category in site.categories %}{{ category[0] }},{% endfor %}{% endcapture %}
-    {% assign sorted_categories = site_categories | split: ',' | sort %}
-
-    <ul class="category-list">
-      {% for category in sorted_categories %}
-        {% if category != "" %}
-          <li><a href="/categories/{{ category | slugify }}/">{{ category }}</a> ({{ site.categories[category].size }})</li>
-        {% endif %}
-      {% endfor %}
-    </ul>
+      <ul class="category-list">
+        {% for category in site.categories %}
+          <li><a href="/categories/{{ category[0] | slugify }}/">{{ category[0] }}</a> ({{ category[1].size }})</li>
+        {% endfor %}
+      </ul>
+    </article>
   </div>
+
+  <aside class="sidebar__right">
+    <h3>Categories</h3>
+    <nav class="sidebar-nav">
+      <ul>
+        {% for category in site.categories %}
+          <li><a href="/categories/{{ category[0] | slugify }}/">{{ category[0] }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </aside>
 </div>
