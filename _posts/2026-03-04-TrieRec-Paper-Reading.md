@@ -8,7 +8,6 @@ tags:
   - 位置编码
 categories:
   - 推荐系统
-  - 学术论文
 ---
 
 # TrieRec: Trie-aware Generative Recommendation
