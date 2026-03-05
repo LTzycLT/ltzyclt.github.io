@@ -263,7 +263,7 @@
   }
 
   > .archive-sidebar {
-    order: 1;
+    order: 2;
     min-width: 200px;
 
     @include breakpoint($large) {
@@ -273,7 +273,7 @@
   }
 
   > .archive-content {
-    order: 2;
+    order: 1;
     flex: 1;
     min-width: 0;
     width: 100% !important;
@@ -284,6 +284,12 @@
     @include breakpoint($medium) {
       width: 100% !important;
     }
+
+    @include breakpoint($large) {
+      width: calc(100% - 220px) !important;
+    }
+  }
+}
 
     @include breakpoint($large) {
       width: calc(100% - 220px) !important;
