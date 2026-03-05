@@ -1,11 +1,19 @@
 ---
 layout: archive
-permalink: /categories/
 title: "Posts by Category"
 ---
 
 {% include base_path %}
 {% include group-by-array collection=site.posts field="categories" %}
+
+{% comment %}Get category from URL path{% endcomment %}
+{% assign url_parts = page.url | split: '/' %}
+{% assign requested_category = nil %}
+{% for part in url_parts %}
+  {% if forloop.last == false and part != 'categories' and part != '' %}
+    {% assign requested_category = part %}
+  {% endif %}
+{% endfor %}
 
 <div class="archive-page">
   <div class="archive-sidebar">
@@ -13,12 +21,28 @@ title: "Posts by Category"
   </div>
 
   <div class="archive-content">
+{% if requested_category %}
+{% comment %}Show only the requested category{% endcomment %}
+  {% for category in group_names %}
+    {% assign category_slug = category | slugify %}
+    {% if category_slug == requested_category %}
+      {% assign posts = group_items[forloop.index0] %}
+      <h2 id="{{ category_slug }}" class="archive__subtitle">{{ category }}</h2>
+      {% for post in posts %}
+        {% include archive-single.html %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+{% else %}
+{% comment %}Show all categories{% endcomment %}
 {% for category in group_names %}
   {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h2>
+  {% assign category_slug = category | slugify %}
+  <h2 id="{{ category_slug }}" class="archive__subtitle">{{ category }}</h2>
   {% for post in posts %}
     {% include archive-single.html %}
   {% endfor %}
 {% endfor %}
+{% endif %}
   </div>
 </div>

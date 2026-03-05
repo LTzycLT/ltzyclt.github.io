@@ -321,6 +321,8 @@ plugins:
   - jekyll-redirect-from
   - jemoji
   - jekyll-archives
+  - jekyll-archives
+
 
 # Mimic GitHub Pages with --safe
 whitelist:
@@ -331,10 +333,12 @@ whitelist:
   - jekyll-redirect-from
   - jemoji
   - jekyll-archives
+  - jekyll-archives
+
+
 
 
 # Archives
-# https://github.com/jekyll/jekyll-archives
 jekyll-archives:
   enabled:
     - categories
@@ -348,8 +352,6 @@ jekyll-archives:
 
 
 # HTML Compression
-# - http://jch.penibelst.de/
-compress_html:
   clippings: all
   ignore:
     envs: development
