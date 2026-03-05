@@ -13,23 +13,15 @@ author_profile: true
       {% if page.type == "tags" %}
         <h2>All Tags</h2>
         <div class="tag-cloud">
-          {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }},{% endfor %}{% endcapture %}
-          {% assign sorted_tags = site_tags | split: ',' | sort %}
-          {% for tag in sorted_tags %}
-            {% if tag != "" %}
-              <a href="/tags/{{ tag | slugify }}/" class="tag-link{% if page.title == tag %} active{% endif %}">{{ tag }}</a>
-            {% endif %}
+          {% for tag in site.tags %}
+            <a href="/tags/{{ tag[0] | slugify }}/" class="tag-link">{{ tag[0] }}</a>
           {% endfor %}
         </div>
       {% elsif page.type == "categories" %}
         <h2>All Categories</h2>
         <ul class="category-list">
-          {% capture site_categories %}{% for category in site.categories %}{{ category[0] }},{% endfor %}{% endcapture %}
-          {% assign sorted_categories = site_categories | split: ',' | sort %}
-          {% for category in sorted_categories %}
-            {% if category != "" %}
-              <li><a href="/categories/{{ category | slugify }}/">{{ category }}</a> ({{ site.categories[category].size }})</li>
-            {% endif %}
+          {% for category in site.categories %}
+            <li><a href="/categories/{{ category[0] | slugify }}/">{{ category[0] }}</a> ({{ category[1].size }})</li>
           {% endfor %}
         </ul>
       {% endif %}
@@ -49,20 +41,12 @@ author_profile: true
     <nav class="sidebar-nav">
       <ul>
         {% if page.type == "tags" %}
-          {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }},{% endfor %}{% endcapture %}
-          {% assign sorted_tags = site_tags | split: ',' | sort %}
-          {% for tag in sorted_tags %}
-            {% if tag != "" %}
-              <li><a href="/tags/{{ tag | slugify }}/" {% if page.title == tag %}class="active"{% endif %}>{{ tag }}</a></li>
-            {% endif %}
+          {% for tag in site.tags %}
+            <li><a href="/tags/{{ tag[0] | slugify }}/">{{ tag[0] }}</a></li>
           {% endfor %}
         {% elsif page.type == "categories" %}
-          {% capture site_categories %}{% for category in site.categories %}{{ category[0] }},{% endfor %}{% endcapture %}
-          {% assign sorted_categories = site_categories | split: ',' | sort %}
-          {% for category in sorted_categories %}
-            {% if category != "" %}
-              <li><a href="/categories/{{ category | slugify }}/" {% if page.title == category %}class="active"{% endif %}>{{ category }}</a></li>
-            {% endif %}
+          {% for category in site.categories %}
+            <li><a href="/categories/{{ category[0] | slugify }}/">{{ category[0] }}</a></li>
           {% endfor %}
         {% endif %}
       </ul>
