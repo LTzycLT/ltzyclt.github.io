@@ -1,4 +1,5 @@
 ---
+layout: single
 permalink: /
 title: "ychzhou's homepage"
 author_profile: true
