@@ -243,3 +243,93 @@
     }
   }
 }
+
+
+/*
+   Archive Page with Taxonomy Sidebar
+   ========================================================================== */
+
+.archive-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+
+  @include breakpoint($large) {
+    flex-direction: row;
+  }
+
+  > .archive-content {
+    // Override default archive layout when inside archive-page
+    @include breakpoint($medium) {
+      @include span(12 of 12);
+    }
+
+    @include breakpoint($large) {
+      @include span(12 of 12);
+    }
+  }
+}
+
+.archive-sidebar {
+  min-width: 200px;
+
+  @include breakpoint($large) {
+    width: 200px;
+    flex-shrink: 0;
+  }
+}
+
+.archive-content {
+  flex: 1;
+  min-width: 0;
+}
+
+
+/*
+   Sidebar Taxonomy (Categories & Tags)
+   ========================================================================== */
+
+.sidebar-taxonomy {
+  background: var(--page-background);
+  padding: 1em;
+  border-radius: $border-radius;
+  border: 1px solid var(--global-border-color);
+
+  h3:first-child {
+    margin-top: 0;
+  }
+}
+
+.sidebar-taxonomy__title {
+  margin: 1em 0 0.5em;
+  font-size: $type-size-6;
+  font-weight: bold;
+  color: var(--global-text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.sidebar-taxonomy__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 0.25em 0;
+  }
+
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: $type-size-6;
+
+    &:hover {
+      color: var(--link-color-hover);
+      text-decoration: underline;
+    }
+  }
+}

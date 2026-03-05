@@ -1,0 +1,58 @@
+<!-- Sidebar taxonomy: Categories and Tags for archive pages -->
+{% include base_path %}
+
+{% comment %}Get all unique categories{% endcomment %}
+{% assign all_categories = "" | split: "," %}
+{% for post in site.posts %}
+  {% if post.categories %}
+    {% assign post_cats = post.categories %}
+    {% if post_cats.first %}
+      {% comment %}post.categories is an array{% endcomment %}
+      {% assign all_categories = all_categories | concat: post_cats %}
+    {% else %}
+      {% comment %}post.categories is a single string{% endcomment %}
+      {% assign all_categories = all_categories | push: post_cats %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% assign unique_categories = all_categories | uniq | sort %}
+
+{% comment %}Get all unique tags{% endcomment %}
+{% assign all_tags = "" | split: "," %}
+{% for post in site.posts %}
+  {% if post.tags %}
+    {% assign post_tags = post.tags %}
+    {% if post_tags.first %}
+      {% comment %}post.tags is an array{% endcomment %}
+      {% assign all_tags = all_tags | concat: post_tags %}
+    {% else %}
+      {% comment %}post.tags is a single string{% endcomment %}
+      {% assign all_tags = all_tags | push: post_tags %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% assign unique_tags = all_tags | uniq | sort %}
+
+<div class="sidebar-taxonomy">
+  {% if unique_categories.size > 0 %}
+  <h3 class="sidebar-taxonomy__title">{{ site.data.ui-text[site.locale].categories_label | default: "Categories" }}</h3>
+  <ul class="sidebar-taxonomy__list">
+    {% for category in unique_categories %}
+      {% if category != "" %}
+      <li><a href="{{ base_path }}/categories/#{{ category | slugify }}">{{ category }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if unique_tags.size > 0 %}
+  <h3 class="sidebar-taxonomy__title">{{ site.data.ui-text[site.locale].tags_label | default: "Tags" }}</h3>
+  <ul class="sidebar-taxonomy__list">
+    {% for tag in unique_tags %}
+      {% if tag != "" %}
+      <li><a href="{{ base_path }}/tags/#{{ tag | slugify }}">{{ tag }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
