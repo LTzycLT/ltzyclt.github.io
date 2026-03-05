@@ -25,9 +25,10 @@ title: "Posts by Category"
 {% if requested_category %}
 {% comment %}Show only the requested category{% endcomment %}
   {% for category in group_names %}
-    {% if category | slugify == requested_category %}
+    {% assign slugged_category = category | slugify %}
+    {% if slugged_category == requested_category %}
       {% assign posts = group_items[forloop.index0] %}
-      <h2 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h2>
+      <h2 id="{{ slugged_category }}" class="archive__subtitle">{{ category }}</h2>
       {% for post in posts %}
         {% include archive-single.html %}
       {% endfor %}

@@ -25,9 +25,10 @@ title: "Posts by Tags"
 {% if requested_tag %}
 {% comment %}Show only the requested tag{% endcomment %}
   {% for tag in group_names %}
-    {% if tag | slugify == requested_tag %}
+    {% assign slugged_tag = tag | slugify %}
+    {% if slugged_tag == requested_tag %}
       {% assign posts = group_items[forloop.index0] %}
-      <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
+      <h2 id="{{ slugged_tag }}" class="archive__subtitle">{{ tag }}</h2>
       {% for post in posts %}
         {% include archive-single.html %}
       {% endfor %}
