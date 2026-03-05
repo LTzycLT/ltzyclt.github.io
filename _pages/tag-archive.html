@@ -1,20 +1,11 @@
 ---
 layout: archive
-permalink: /tags/:name/
+permalink: /tags/
 title: "Posts by Tags"
 ---
 
 {% include base_path %}
 {% include group-by-array collection=site.posts field="tags" %}
-
-{% comment %}Get tag from URL path{% endcomment %}
-{% assign url_parts = page.url | split: '/' %}
-{% assign requested_tag = nil %}
-{% for part in url_parts %}
-  {% if forloop.last == false and part != 'tags' and part != '' %}
-    {% assign requested_tag = part %}
-  {% endif %}
-{% endfor %}
 
 <div class="archive-page">
   <div class="archive-sidebar">
@@ -22,20 +13,6 @@ title: "Posts by Tags"
   </div>
 
   <div class="archive-content">
-{% if requested_tag %}
-{% comment %}Show only the requested tag{% endcomment %}
-  {% for tag in group_names %}
-    {% assign slugged_tag = tag | slugify %}
-    {% if slugged_tag == requested_tag %}
-      {% assign posts = group_items[forloop.index0] %}
-      <h2 id="{{ slugged_tag }}" class="archive__subtitle">{{ tag }}</h2>
-      {% for post in posts %}
-        {% include archive-single.html %}
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
-{% else %}
-{% comment %}Show all tags{% endcomment %}
 {% for tag in group_names %}
   {% assign posts = group_items[forloop.index0] %}
   <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
@@ -43,6 +20,5 @@ title: "Posts by Tags"
     {% include archive-single.html %}
   {% endfor %}
 {% endfor %}
-{% endif %}
   </div>
 </div>
