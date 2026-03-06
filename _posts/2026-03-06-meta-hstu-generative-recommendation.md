@@ -16,7 +16,7 @@ comments: true
 
 >TL;DR：Meta 将推荐问题重新建模为序列 transduction 任务，提出了 HSTU 架构。在 1.5 万亿参数规模下，线上 A/B 测试提升 12.4%，训练速度比 FlashAttention2 快 5.3-15.2 倍。本文的核心价值在于验证了生成式推荐在工业级场景下的可行性。
 
-![Figure 1: 训练算力对比](/images/2402.17152v3/_page_0_Figure_9.jpeg)
+![Figure 1: 训练算力对比](/images/2402_17152v3/_page_0_Figure_9.jpeg)
 
 图 1 展示了推荐系统与语言模型在训练算力上的对比。GR（生成式推荐）使用了接近 GPT-3/LLaMa-2 规模的算力。
 
@@ -46,7 +46,7 @@ Meta 的解决方案是**生成式推荐（Generative Recommenders, GR）**：
 
 ### 2.1 统一时间序列
 
-![Figure 2: DLRMs vs GRs 特征对比](/images/2402.17152v3/_page_2_Figure_1.jpeg)
+![Figure 2: DLRMs vs GRs 特征对比](/images/2402_17152v3/_page_2_Figure_1.jpeg)
 
 图 2 展示了 DLRM 和 GR 的特征处理方式差异：
 
@@ -76,7 +76,7 @@ $$p(a_{i+1} | \Phi_0, a_0, \Phi_1, a_1, \dots, \Phi_{i+1})$$
 
 ## 3. HSTU 架构
 
-![Figure 3: DLRMs vs HSTU 模型组件对比](/images/2402.17152v3/_page_3_Figure_10.jpeg)
+![Figure 3: DLRMs vs HSTU 模型组件对比](/images/2402_17152v3/_page_3_Figure_10.jpeg)
 
 HSTU（Hirearchical Sequential Transduction Unit）的核心公式：
 
@@ -124,7 +124,7 @@ $$A(X)V(X) = \phi_2(Q(X)K(X)^T + rab^{p,t})V(X)$$
 
 用户行为序列长度分布是 skewed 的，很多序列很稀疏。SL 在训练时随机采样变长序列：
 
-![Figure 4: Stochastic Length 效果](/images/2402.17152v3/_page_6_Figure_4.jpeg)
+![Figure 4: Stochastic Length 效果](/images/2402_17152v3/_page_6_Figure_4.jpeg)
 
 当 $\alpha=1.6$ 时，4096 长度的序列被压缩到约 776（压缩 80%+），但 NDCG 几乎不变。
 
@@ -152,8 +152,8 @@ $$O(m \cdot n^2 d)$$
 
 核心思想：**修改 attention mask，使得多个候选可以并行计算**
 
-![Figure 11: M-FALCON 训练与推理](/images/2402.17152v3/_page_23_Figure_3.jpeg)
-![Figure 11: M-FALCON 训练与推理](/images/2402.17152v3/_page_23_Figure_5.jpeg)
+![Figure 11: M-FALCON 训练与推理](/images/2402_17152v3/_page_23_Figure_3.jpeg)
+![Figure 11: M-FALCON 训练与推理](/images/2402_17152v3/_page_23_Figure_5.jpeg)
 
 - 在一次前向传播中同时处理 $b_m$ 个候选
 - 通过修改 attention mask，防止候选之间相互 attention
@@ -172,7 +172,7 @@ $$O(m \cdot n^2 d)$$
 
 ## 5. 效率对比
 
-![Figure 5: HSTU vs FlashAttention2 训练/推理效率](/images/2402.17152v3/_page_7_Figure_1.jpeg)
+![Figure 5: HSTU vs FlashAttention2 训练/推理效率](/images/2402_17152v3/_page_7_Figure_1.jpeg)
 
 | 指标 | Transformer | HSTU |
 |------|-------------|------|
@@ -180,7 +180,7 @@ $$O(m \cdot n^2 d)$$
 | 推理速度 | 1x | 5.6x |
 | 激活显存 | 33d | 14d |
 
-![Figure 6: 线上推理吞吐对比](/images/2402.17152v3/_page_7_Figure_8.jpeg)
+![Figure 6: 线上推理吞吐对比](/images/2402_17152v3/_page_7_Figure_8.jpeg)
 
 与生产 DLRM 对比：模型复杂度提升 285x，QPS 提升 1.50x-2.99x。
 
@@ -188,7 +188,7 @@ $$O(m \cdot n^2 d)$$
 
 ## 6. Scaling Law 验证
 
-![Figure 7: 扩展性对比 DLRM vs GR](/images/2402.17152v3/_page_8_Figure_1.jpeg)
+![Figure 7: 扩展性对比 DLRM vs GR](/images/2402_17152v3/_page_8_Figure_1.jpeg)
 
 图 7 展示了关键发现：
 
