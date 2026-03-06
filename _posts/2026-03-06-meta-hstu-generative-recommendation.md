@@ -14,7 +14,7 @@ math: true
 comments: true
 ---
 
->TL;DR：Meta 将推荐问题重新建模为序列 transduction 任务，提出了 HSTU 架构。在 1.5 万亿参数规模下，线上 A/B 测试提升 12.4%，训练速度比 FlashAttention2 快 5.3-15.2 倍。本文的核心价值在于验证了生成式推荐在工业级场景下的可行性。
+> TL;DR：Meta 将推荐问题重新建模为序列 transduction 任务，提出了 HSTU 架构。在 1.5 万亿参数规模下，线上 A/B 测试提升 12.4%，训练速度比 FlashAttention2 快 5.3-15.2 倍。本文的核心价值在于验证了生成式推荐在工业级场景下的可行性。
 
 ![Figure 1: 训练算力对比](/images/2402_17152v3/page_0_Figure_9.jpeg)
 
@@ -32,7 +32,7 @@ comments: true
 
 2. **亿级词表**：推荐系统的 item 词表是动态的（non-stationary），随时有新品上线、旧品下架，规模可达十亿级，这与语言模型的静态 100K 词表有本质区别。
 
-3. **推理成本**：排序阶段需要处理 tens of thousands 个候选 item，传统 target-aware 方式需要对每个候选单独计算，成本为 $O(mn^2d)$。
+3. **推理成本**：排序阶段需要处理 tens of thousands 个候选 item，传统 target-aware 方式需要对每个候选单独计算，成本为 $$O(mn^2d)$$。
 
 ### 1.2 解决思路
 
@@ -51,7 +51,7 @@ Meta 的解决方案是**生成式推荐（Generative Recommenders, GR）**：
 图 2 展示了 DLRM 和 GR 的特征处理方式差异：
 
 - **DLRM**：heterogeneous features 分别处理，通过 MoE、Cross Network 等进行特征交叉
-- **GR**：将所有特征压缩进一条统一的**时间序列** $(\Phi_0, a_0, \Phi_1, a_1, \dots)$，其中 $\Phi_i$ 是物品，$a_i$ 是用户行为
+- **GR**：将所有特征压缩进一条统一的**时间序列** $$(\Phi_0, a_0, \Phi_1, a_1, \dots)$$，其中 $$\Phi_i$$ 是物品，$$a_i$$ 是用户行为
 
 优势：可以用标准的序列建模方法处理所有特征，且当序列长度趋向无穷时，可以逼近完整 DLRM 的特征空间。
 
@@ -62,15 +62,15 @@ Meta 的解决方案是**生成式推荐（Generative Recommenders, GR）**：
 **GR 的解决方案：Interleaved Items and Actions**
 
 将 items 和 actions 交替排列：
-$$p(a_{i+1} | \Phi_0, a_0, \Phi_1, a_1, \dots, \Phi_{i+1})$$
+$$p(a_{i+1} | \Phi_0, a_0, \Phi_1, a_1, \ldots, \Phi_{i+1})$$
 
-这样可以在 $\Phi_{i+1}$ 位置直接进行 target-aware attention，一次前向传播处理所有候选。
+这样可以在 $$\Phi_{i+1}$$ 位置直接进行 target-aware attention，一次前向传播处理所有候选。
 
 ### 2.3 生成式训练
 
 传统 DLRM 是 pointwise 训练，每个 (user, item) 对独立计算 loss。GR 改为**生成式训练**，将用户历史和目标物品组成序列进行训练。
 
-**复杂度降低**：从 $O(N^3d + N^2d^2)$ 降至 $O(N^2d + Nd^2)$，降低了一个 O(N) 因子。
+**复杂度降低**：从 $$O(N^3d + N^2d^2)$$ 降至 $$O(N^2d + Nd^2)$$，降低了一个 O(N) 因子。
 
 ---
 
@@ -86,9 +86,9 @@ $$O(X) = f_2(\text{Norm}(A(X)V(X)) \odot U(X))$$
 
 ### 3.1 Pointwise Attention
 
-标准 Transformer 使用 Softmax 归一化：$\text{Softmax}(QK^T)V$
+标准 Transformer 使用 Softmax 归一化：$$\text{Softmax}(QK^T)V$$
 
-HSTU 改用 **Pointwise Attention**（公式中的 $\phi_2$ 是 SiLU，不是 Softmax）：
+HSTU 改用 **Pointwise Attention**（公式中的 $$\phi_2$$ 是 SiLU，不是 Softmax）：
 
 $$A(X)V(X) = \phi_2(Q(X)K(X)^T + rab^{p,t})V(X)$$
 
@@ -103,8 +103,8 @@ $$A(X)V(X) = \phi_2(Q(X)K(X)^T + rab^{p,t})V(X)$$
 ### 3.2 Relative Attention Bias (rab^{p,t})
 
 引入相对位置偏置和时间偏置：
-- $rab^p$：位置信息
-- $rab^t$：时间信息（用户历史中不同时间的行为有不同权重）
+- $$rab^p$$：位置信息
+- $$rab^t$$：时间信息（用户历史中不同时间的行为有不同权重）
 
 ### 3.3 14d 显存设计
 
@@ -126,13 +126,13 @@ $$A(X)V(X) = \phi_2(Q(X)K(X)^T + rab^{p,t})V(X)$$
 
 ![Figure 4: Stochastic Length 效果](/images/2402_17152v3/page_6_Figure_4.jpeg)
 
-当 $\alpha=1.6$ 时，4096 长度的序列被压缩到约 776（压缩 80%+），但 NDCG 几乎不变。
+当 $$\alpha=1.6$$ 时，4096 长度的序列被压缩到约 776（压缩 80%+），但 NDCG 几乎不变。
 
 ### 3.5 高效注意力内核
 
 HSTU 开发了专门的 GPU 内核，将 attention 计算转换为 grouped GEMMs：
 - 充分利用稀疏性
-- 内存访问从 $O(n^2)$ 降至近似 $O(n)$
+- 内存访问从 $$O(n^2)$$ 降至近似 $$O(n)$$
 - 获得 2-5x 吞吐量提升
 
 ---
@@ -155,9 +155,9 @@ $$O(m \cdot n^2 d)$$
 ![Figure 11: M-FALCON 训练与推理](/images/2402_17152v3/page_23_Figure_3.jpeg)
 ![Figure 11: M-FALCON 训练与推理](/images/2402_17152v3/page_23_Figure_5.jpeg)
 
-- 在一次前向传播中同时处理 $b_m$ 个候选
+- 在一次前向传播中同时处理 $$b_m$$ 个候选
 - 通过修改 attention mask，防止候选之间相互 attention
-- 成本从 $O(m n^2 d)$ 降至 $O((n+m)^2 d) = O(n^2 d)$
+- 成本从 $$O(m n^2 d)$$ 降至 $$O((n+m)^2 d) = O(n^2 d)$$
 
 ### 4.3 KV Caching
 
