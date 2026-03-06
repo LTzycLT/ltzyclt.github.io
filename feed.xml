@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-06T08:53:51+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">Meta HSTU: 生成式推荐系统的实践</title><link href="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/" rel="alternate" type="text/html" title="Meta HSTU: 生成式推荐系统的实践" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation</id><content type="html" xml:base="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-06T09:07:01+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">Meta HSTU: 生成式推荐系统的实践</title><link href="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/" rel="alternate" type="text/html" title="Meta HSTU: 生成式推荐系统的实践" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation</id><content type="html" xml:base="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/"><![CDATA[<blockquote>
   <p>TL;DR：Meta 将推荐问题重新建模为序列 transduction 任务，提出了 HSTU 架构。在 1.5 万亿参数规模下，线上 A/B 测试提升 12.4%，训练速度比 FlashAttention2 快 5.3-15.2 倍。本文的核心价值在于验证了生成式推荐在工业级场景下的可行性。</p>
 </blockquote>
 
-<p><img src="/images/2402_17152v3/_page_0_Figure_9.jpeg" alt="Figure 1: 训练算力对比" /></p>
+<p><img src="/images/2402_17152v3/page_0_Figure_9.jpeg" alt="Figure 1: 训练算力对比" /></p>
 
 <p>图 1 展示了推荐系统与语言模型在训练算力上的对比。GR（生成式推荐）使用了接近 GPT-3/LLaMa-2 规模的算力。</p>
 
@@ -40,7 +40,7 @@
 
 <h3 id="21-统一时间序列">2.1 统一时间序列</h3>
 
-<p><img src="/images/2402_17152v3/_page_2_Figure_1.jpeg" alt="Figure 2: DLRMs vs GRs 特征对比" /></p>
+<p><img src="/images/2402_17152v3/page_2_Figure_1.jpeg" alt="Figure 2: DLRMs vs GRs 特征对比" /></p>
 
 <p>图 2 展示了 DLRM 和 GR 的特征处理方式差异：</p>
 
@@ -72,7 +72,7 @@
 
 <h2 id="3-hstu-架构">3. HSTU 架构</h2>
 
-<p><img src="/images/2402_17152v3/_page_3_Figure_10.jpeg" alt="Figure 3: DLRMs vs HSTU 模型组件对比" /></p>
+<p><img src="/images/2402_17152v3/page_3_Figure_10.jpeg" alt="Figure 3: DLRMs vs HSTU 模型组件对比" /></p>
 
 <p>HSTU（Hirearchical Sequential Transduction Unit）的核心公式：</p>
 
@@ -156,7 +156,7 @@
 
 <p>用户行为序列长度分布是 skewed 的，很多序列很稀疏。SL 在训练时随机采样变长序列：</p>
 
-<p><img src="/images/2402_17152v3/_page_6_Figure_4.jpeg" alt="Figure 4: Stochastic Length 效果" /></p>
+<p><img src="/images/2402_17152v3/page_6_Figure_4.jpeg" alt="Figure 4: Stochastic Length 效果" /></p>
 
 <p>当 $\alpha=1.6$ 时，4096 长度的序列被压缩到约 776（压缩 80%+），但 NDCG 几乎不变。</p>
 
@@ -186,8 +186,8 @@
 
 <p>核心思想：<strong>修改 attention mask，使得多个候选可以并行计算</strong></p>
 
-<p><img src="/images/2402_17152v3/_page_23_Figure_3.jpeg" alt="Figure 11: M-FALCON 训练与推理" />
-<img src="/images/2402_17152v3/_page_23_Figure_5.jpeg" alt="Figure 11: M-FALCON 训练与推理" /></p>
+<p><img src="/images/2402_17152v3/page_23_Figure_3.jpeg" alt="Figure 11: M-FALCON 训练与推理" />
+<img src="/images/2402_17152v3/page_23_Figure_5.jpeg" alt="Figure 11: M-FALCON 训练与推理" /></p>
 
 <ul>
   <li>在一次前向传播中同时处理 $b_m$ 个候选</li>
@@ -210,7 +210,7 @@
 
 <h2 id="5-效率对比">5. 效率对比</h2>
 
-<p><img src="/images/2402_17152v3/_page_7_Figure_1.jpeg" alt="Figure 5: HSTU vs FlashAttention2 训练/推理效率" /></p>
+<p><img src="/images/2402_17152v3/page_7_Figure_1.jpeg" alt="Figure 5: HSTU vs FlashAttention2 训练/推理效率" /></p>
 
 <table>
   <thead>
@@ -239,7 +239,7 @@
   </tbody>
 </table>
 
-<p><img src="/images/2402_17152v3/_page_7_Figure_8.jpeg" alt="Figure 6: 线上推理吞吐对比" /></p>
+<p><img src="/images/2402_17152v3/page_7_Figure_8.jpeg" alt="Figure 6: 线上推理吞吐对比" /></p>
 
 <p>与生产 DLRM 对比：模型复杂度提升 285x，QPS 提升 1.50x-2.99x。</p>
 
@@ -247,7 +247,7 @@
 
 <h2 id="6-scaling-law-验证">6. Scaling Law 验证</h2>
 
-<p><img src="/images/2402_17152v3/_page_8_Figure_1.jpeg" alt="Figure 7: 扩展性对比 DLRM vs GR" /></p>
+<p><img src="/images/2402_17152v3/page_8_Figure_1.jpeg" alt="Figure 7: 扩展性对比 DLRM vs GR" /></p>
 
 <p>图 7 展示了关键发现：</p>
 
