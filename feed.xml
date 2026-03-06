@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-06T09:07:01+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">Meta HSTU: 生成式推荐系统的实践</title><link href="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/" rel="alternate" type="text/html" title="Meta HSTU: 生成式推荐系统的实践" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation</id><content type="html" xml:base="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-06T09:17:20+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">Meta HSTU: 生成式推荐系统的实践</title><link href="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/" rel="alternate" type="text/html" title="Meta HSTU: 生成式推荐系统的实践" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation</id><content type="html" xml:base="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/"><![CDATA[<blockquote>
   <p>TL;DR：Meta 将推荐问题重新建模为序列 transduction 任务，提出了 HSTU 架构。在 1.5 万亿参数规模下，线上 A/B 测试提升 12.4%，训练速度比 FlashAttention2 快 5.3-15.2 倍。本文的核心价值在于验证了生成式推荐在工业级场景下的可行性。</p>
 </blockquote>
 
@@ -22,7 +22,7 @@
     <p><strong>亿级词表</strong>：推荐系统的 item 词表是动态的（non-stationary），随时有新品上线、旧品下架，规模可达十亿级，这与语言模型的静态 100K 词表有本质区别。</p>
   </li>
   <li>
-    <p><strong>推理成本</strong>：排序阶段需要处理 tens of thousands 个候选 item，传统 target-aware 方式需要对每个候选单独计算，成本为 $O(mn^2d)$。</p>
+    <p><strong>推理成本</strong>：排序阶段需要处理 tens of thousands 个候选 item，传统 target-aware 方式需要对每个候选单独计算，成本为 \(O(mn^2d)\)。</p>
   </li>
 </ol>
 
@@ -46,7 +46,7 @@
 
 <ul>
   <li><strong>DLRM</strong>：heterogeneous features 分别处理，通过 MoE、Cross Network 等进行特征交叉</li>
-  <li><strong>GR</strong>：将所有特征压缩进一条统一的<strong>时间序列</strong> $(\Phi_0, a_0, \Phi_1, a_1, \dots)$，其中 $\Phi_i$ 是物品，$a_i$ 是用户行为</li>
+  <li><strong>GR</strong>：将所有特征压缩进一条统一的<strong>时间序列</strong> \((\Phi_0, a_0, \Phi_1, a_1, \dots)\)，其中 \(\Phi_i\) 是物品，\(a_i\) 是用户行为</li>
 </ul>
 
 <p>优势：可以用标准的序列建模方法处理所有特征，且当序列长度趋向无穷时，可以逼近完整 DLRM 的特征空间。</p>
@@ -58,15 +58,15 @@
 <p><strong>GR 的解决方案：Interleaved Items and Actions</strong></p>
 
 <p>将 items 和 actions 交替排列：
-\(p(a_{i+1} | \Phi_0, a_0, \Phi_1, a_1, \dots, \Phi_{i+1})\)</p>
+\(p(a_{i+1} | \Phi_0, a_0, \Phi_1, a_1, \ldots, \Phi_{i+1})\)</p>
 
-<p>这样可以在 $\Phi_{i+1}$ 位置直接进行 target-aware attention，一次前向传播处理所有候选。</p>
+<p>这样可以在 \(\Phi_{i+1}\) 位置直接进行 target-aware attention，一次前向传播处理所有候选。</p>
 
 <h3 id="23-生成式训练">2.3 生成式训练</h3>
 
 <p>传统 DLRM 是 pointwise 训练，每个 (user, item) 对独立计算 loss。GR 改为<strong>生成式训练</strong>，将用户历史和目标物品组成序列进行训练。</p>
 
-<p><strong>复杂度降低</strong>：从 $O(N^3d + N^2d^2)$ 降至 $O(N^2d + Nd^2)$，降低了一个 O(N) 因子。</p>
+<p><strong>复杂度降低</strong>：从 \(O(N^3d + N^2d^2)\) 降至 \(O(N^2d + Nd^2)\)，降低了一个 O(N) 因子。</p>
 
 <hr />
 
@@ -82,9 +82,9 @@
 
 <h3 id="31-pointwise-attention">3.1 Pointwise Attention</h3>
 
-<p>标准 Transformer 使用 Softmax 归一化：$\text{Softmax}(QK^T)V$</p>
+<p>标准 Transformer 使用 Softmax 归一化：\(\text{Softmax}(QK^T)V\)</p>
 
-<p>HSTU 改用 <strong>Pointwise Attention</strong>（公式中的 $\phi_2$ 是 SiLU，不是 Softmax）：</p>
+<p>HSTU 改用 <strong>Pointwise Attention</strong>（公式中的 \(\phi_2\) 是 SiLU，不是 Softmax）：</p>
 
 \[A(X)V(X) = \phi_2(Q(X)K(X)^T + rab^{p,t})V(X)\]
 
@@ -105,8 +105,8 @@
 
 <p>引入相对位置偏置和时间偏置：</p>
 <ul>
-  <li>$rab^p$：位置信息</li>
-  <li>$rab^t$：时间信息（用户历史中不同时间的行为有不同权重）</li>
+  <li>\(rab^p\)：位置信息</li>
+  <li>\(rab^t\)：时间信息（用户历史中不同时间的行为有不同权重）</li>
 </ul>
 
 <h3 id="33-14d-显存设计">3.3 14d 显存设计</h3>
@@ -158,14 +158,14 @@
 
 <p><img src="/images/2402_17152v3/page_6_Figure_4.jpeg" alt="Figure 4: Stochastic Length 效果" /></p>
 
-<p>当 $\alpha=1.6$ 时，4096 长度的序列被压缩到约 776（压缩 80%+），但 NDCG 几乎不变。</p>
+<p>当 \(\alpha=1.6\) 时，4096 长度的序列被压缩到约 776（压缩 80%+），但 NDCG 几乎不变。</p>
 
 <h3 id="35-高效注意力内核">3.5 高效注意力内核</h3>
 
 <p>HSTU 开发了专门的 GPU 内核，将 attention 计算转换为 grouped GEMMs：</p>
 <ul>
   <li>充分利用稀疏性</li>
-  <li>内存访问从 $O(n^2)$ 降至近似 $O(n)$</li>
+  <li>内存访问从 \(O(n^2)\) 降至近似 \(O(n)\)</li>
   <li>获得 2-5x 吞吐量提升</li>
 </ul>
 
@@ -190,9 +190,9 @@
 <img src="/images/2402_17152v3/page_23_Figure_5.jpeg" alt="Figure 11: M-FALCON 训练与推理" /></p>
 
 <ul>
-  <li>在一次前向传播中同时处理 $b_m$ 个候选</li>
+  <li>在一次前向传播中同时处理 \(b_m\) 个候选</li>
   <li>通过修改 attention mask，防止候选之间相互 attention</li>
-  <li>成本从 $O(m n^2 d)$ 降至 $O((n+m)^2 d) = O(n^2 d)$</li>
+  <li>成本从 \(O(m n^2 d)\) 降至 \(O((n+m)^2 d) = O(n^2 d)\)</li>
 </ul>
 
 <h3 id="43-kv-caching">4.3 KV Caching</h3>
