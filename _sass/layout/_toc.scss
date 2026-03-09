@@ -10,7 +10,7 @@
     position: fixed;
     top: calc(#{$masthead-height} + 2em);
     right: 1em;
-    width: $right-sidebar-width-narrow;
+    width: 200px;
     max-height: calc(100vh - #{$masthead-height} - 4em);
     overflow-y: auto;
     z-index: 10;
@@ -19,8 +19,8 @@
   }
 
   @include breakpoint($x-large) {
-    width: $right-sidebar-width;
-    right: 2em;
+    width: 230px;
+    right: calc((100vw - #{$x-large}) / 2 + 1em);
   }
 }
 
@@ -95,7 +95,7 @@
 }
 
 // Hide TOC on smaller screens
-@media screen and (max-width: $large - 1px) {
+@media screen and (max-width: 924px) {
   .toc-wrapper {
     display: none !important;
   }

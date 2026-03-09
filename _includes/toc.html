@@ -1,5 +1,6 @@
+{% if page.date %}
 <!-- Table of Contents -->
-<aside class="sidebar__right toc-wrapper">
+<aside class="toc-wrapper" style="display:none;">
   <nav class="toc" id="toc">
     <header>
       <h4 class="nav__title">
@@ -22,9 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const headers = content.querySelectorAll('h2, h3');
 
   if (headers.length === 0) {
-    if (tocWrapper) tocWrapper.style.display = 'none';
     return;
   }
+
+  // Show TOC only when there are headers
+  if (tocWrapper) tocWrapper.style.display = 'block';
 
   // Generate TOC
   headers.forEach(function(header, index) {
@@ -80,3 +83,4 @@ document.addEventListener('DOMContentLoaded', function() {
   updateActiveToc();
 });
 </script>
+{% endif %}
