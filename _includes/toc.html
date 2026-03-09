@@ -1,0 +1,82 @@
+<!-- Table of Contents -->
+<aside class="sidebar__right toc-wrapper">
+  <nav class="toc" id="toc">
+    <header>
+      <h4 class="nav__title">
+        <i class="fa fa-list-ul" aria-hidden="true"></i> 目录
+      </h4>
+    </header>
+    <ul class="toc__menu" id="toc__menu"></ul>
+  </nav>
+</aside>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const content = document.querySelector('.page__content');
+  const tocMenu = document.getElementById('toc__menu');
+  const tocWrapper = document.querySelector('.toc-wrapper');
+
+  if (!content || !tocMenu) return;
+
+  // Find all h2 and h3 headers in the content
+  const headers = content.querySelectorAll('h2, h3');
+
+  if (headers.length === 0) {
+    if (tocWrapper) tocWrapper.style.display = 'none';
+    return;
+  }
+
+  // Generate TOC
+  headers.forEach(function(header, index) {
+    // Add ID to header if not present
+    if (!header.id) {
+      header.id = 'section-' + index;
+    }
+
+    const li = document.createElement('li');
+    li.className = 'toc__item toc__item--' + header.tagName.toLowerCase();
+
+    const a = document.createElement('a');
+    a.href = '#' + header.id;
+    a.textContent = header.textContent;
+    a.className = 'toc__link';
+
+    // Add click event for smooth scrolling
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.getElementById(header.id);
+      if (target) {
+        const offset = 80; // Account for fixed header
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        history.pushState(null, null, '#' + header.id);
+      }
+    });
+
+    li.appendChild(a);
+    tocMenu.appendChild(li);
+  });
+
+  // Highlight active section on scroll
+  const tocLinks = tocMenu.querySelectorAll('.toc__link');
+  const headerElements = Array.from(headers);
+
+  function updateActiveToc() {
+    const scrollPos = window.scrollY + 100;
+
+    headerElements.forEach(function(header, index) {
+      const headerTop = header.getBoundingClientRect().top + window.pageYOffset;
+      const nextHeader = headerElements[index + 1];
+      const nextHeaderTop = nextHeader ? nextHeader.getBoundingClientRect().top + window.pageYOffset : Infinity;
+
+      if (scrollPos >= headerTop && scrollPos < nextHeaderTop) {
+        tocLinks.forEach(function(link) { link.classList.remove('active'); });
+        if (tocLinks[index]) tocLinks[index].classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveToc);
+  updateActiveToc();
+});
+</script>
