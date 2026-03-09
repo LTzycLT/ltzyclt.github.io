@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-09T07:09:18+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">Meta HSTU: 生成式推荐系统的实践</title><link href="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/" rel="alternate" type="text/html" title="Meta HSTU: 生成式推荐系统的实践" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation</id><content type="html" xml:base="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-09T07:22:15+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">Meta HSTU: 生成式推荐系统的实践</title><link href="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/" rel="alternate" type="text/html" title="Meta HSTU: 生成式推荐系统的实践" /><published>2026-03-06T00:00:00+00:00</published><updated>2026-03-06T00:00:00+00:00</updated><id>https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation</id><content type="html" xml:base="https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/"><![CDATA[<blockquote>
   <p><strong>TL;DR:</strong> Meta 将推荐问题重新建模为序列 transduction 任务，提出了 HSTU 架构。在 1.5 万亿参数规模下，线上 A/B 测试提升 12.4%，训练速度比 FlashAttention2 快 5.3-15.2 倍。本文的核心价值在于验证了生成式推荐在工业级场景下的可行性。</p>
 </blockquote>
 
@@ -372,17 +372,7 @@ VQD (离散 token) ───────────────────┘
 
 <p><strong>关键特性</strong>：</p>
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>强制平衡</strong>：每个簇恰好包含</td>
-          <td>V</td>
-          <td>/K 个物品，避免某些码本过度使用</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li><strong>强制平衡</strong>：每个簇恰好包含 |V|/K 个物品，避免某些码本过度使用</li>
   <li><strong>层次索引</strong>：L=3 层，每层 K=8192 个码本，共可表示 8192³ 个物品</li>
   <li><strong>残差计算</strong>：\(r_i^{(l+1)} = r_i^l - c_{(s_i^l)}^l\)，逐层细化表示</li>
 </ul>
@@ -486,7 +476,7 @@ Decoder: 自回归生成目标会话
 
 <p><em>图2: OneRec 整体框架：(i) 会话训练阶段 (ii) IPA阶段</em></p>
 
-<h4 id="231-奖励模型训练">2.3.1 奖励模型训练</h4>
+<h3 id="231-奖励模型训练">2.3.1 奖励模型训练</h3>
 
 <p>奖励模型 \(R(u, S)\) 评估用户 u 对会话 S 的偏好程度：</p>
 
@@ -500,7 +490,7 @@ Decoder: 自回归生成目标会话
 
 \[\mathcal{L}_{RM} = -\sum_{xtr \in \{swt,vtr,wtr,ltr\}} \left( y^{xtr} \log(\hat{r}^{xtr}) + (1-y^{xtr})\log(1-\hat{r}^{xtr}) \right)\]
 
-<h4 id="232-迭代dpo训练">2.3.2 迭代DPO训练</h4>
+<h3 id="232-迭代dpo训练">2.3.2 迭代DPO训练</h3>
 
 <p><strong>自难负采样策略</strong>：</p>
 
