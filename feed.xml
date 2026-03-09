@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-09T09:45:41+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">PinRec：面向工业级推荐系统的结果条件化多 Token 生成式召回</title><link href="https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval/" rel="alternate" type="text/html" title="PinRec：面向工业级推荐系统的结果条件化多 Token 生成式召回" /><published>2026-03-09T00:00:00+00:00</published><updated>2026-03-09T00:00:00+00:00</updated><id>https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval</id><content type="html" xml:base="https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-09T11:00:06+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">PinRec：面向工业级推荐系统的结果条件化多 Token 生成式召回</title><link href="https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval/" rel="alternate" type="text/html" title="PinRec：面向工业级推荐系统的结果条件化多 Token 生成式召回" /><published>2026-03-09T00:00:00+00:00</published><updated>2026-03-09T00:00:00+00:00</updated><id>https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval</id><content type="html" xml:base="https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval/"><![CDATA[<blockquote>
   <p>论文：PinRec: Outcome-Conditioned, Multi-Token Generative Retrieval for Industry-Scale Recommendation Systems
 机构：Pinterest
 发表：2025 年
@@ -47,15 +47,15 @@ arXiv：2504.10507v4</p>
 
 <h2 id="二问题形式化">二、问题形式化</h2>
 
-<p>考虑一个系统，包含用户集合 $\mathcal{U}$、物品集合 $\mathcal{I}$、行为类型集合 $\mathcal{A}$、推荐场景集合 $\mathcal{S}$。</p>
+<p>考虑一个系统，包含用户集合 \(\mathcal{U}\)、物品集合 \(\mathcal{I}\)、行为类型集合 \(\mathcal{A}\)、推荐场景集合 \(\mathcal{S}\)。</p>
 
 <p><strong>用户历史</strong>定义为交互元组序列：</p>
 
 \[H(u, t_{\max}) = \langle (i_1, a_1, s_1, t_1), (i_2, a_2, s_2, t_2), \ldots, (i_m, a_m, s_m, t_m) \rangle\]
 
-<p>每个元组记录了用户在时刻 $t_j$ 在场景 $s_j$ 上通过行为 $a_j$ 与物品 $i_j$ 的交互。</p>
+<p>每个元组记录了用户在时刻 \(t_j\) 在场景 \(s_j\) 上通过行为 \(a_j\) 与物品 \(i_j\) 的交互。</p>
 
-<p>目标是构建模型 $f_\theta$，给定用户历史、目标物品类型和推荐场景，生成 N 个候选物品的有序列表。</p>
+<p>目标是构建模型 \(f_\theta\)，给定用户历史、目标物品类型和推荐场景，生成 N 个候选物品的有序列表。</p>
 
 <hr />
 
@@ -63,7 +63,7 @@ arXiv：2504.10507v4</p>
 
 <h3 id="31-transformer-decoder-骨架">3.1 Transformer Decoder 骨架</h3>
 
-<p>PinRec 以 <strong>Causal Transformer Decoder</strong> 为骨架（12 层，12 注意力头，768 隐层维度，约 100M 参数）。因果注意力掩码确保位置 $t$ 的 Token 只能 attend 到 $t’ \leq t$ 的位置，防止信息泄露。</p>
+<p>PinRec 以 <strong>Causal Transformer Decoder</strong> 为骨架（12 层，12 注意力头，768 隐层维度，约 100M 参数）。因果注意力掩码确保位置 \(t\) 的 Token 只能 attend 到 \(t' \leq t\) 的位置，防止信息泄露。</p>
 
 \[\mathbf{h}_{u,t} = \text{TransformerStack}^{(L)}(\mathbf{x}_{u,1:t})\]
 
@@ -71,30 +71,30 @@ arXiv：2504.10507v4</p>
 
 <p><strong>动机</strong>：用户在不同行为类型下的偏好是不同的——保存行为（save/repin）反映的是高价值、有收藏意愿的内容；点击行为（click）反映的是当下吸引眼球的内容。业务上需要能够灵活配置两者的比例，以适应不同的运营目标。</p>
 
-<p><strong>方案</strong>：为每种结果类型（行为类型、推荐场景等）学习 learnable embedding $\mathbf{c}_k$，将这些条件向量注入输出头：</p>
+<p><strong>方案</strong>：为每种结果类型（行为类型、推荐场景等）学习 learnable embedding \(\mathbf{c}_k\)，将这些条件向量注入输出头：</p>
 
 \[\hat{\mathbf{i}}_{u,t} = O(\mathbf{h}_{u,t}, \mathbf{c}_1, \mathbf{c}_2, \ldots, \mathbf{c}_k)\]
 
-<p>训练时，条件信号使用目标物品的真实结果类型；推断时，可以根据业务需求设置条件分布 $D_1, D_2, \ldots, D_n$，分别生成面向不同结果的候选物品，再按照预算分配（Budget Allocation）组合最终候选集。</p>
+<p>训练时，条件信号使用目标物品的真实结果类型；推断时，可以根据业务需求设置条件分布 \(D_1, D_2, \ldots, D_n\)，分别生成面向不同结果的候选物品，再按照预算分配（Budget Allocation）组合最终候选集。</p>
 
 <h3 id="33-时序多-token-预测temporal-multi-token-prediction">3.3 时序多 Token 预测（Temporal Multi-Token Prediction）</h3>
 
-<p><strong>动机</strong>：传统多 Token 预测（如 LLM 中的 multi-token prediction）在位置索引上预测 $t+1, t+2, \ldots$，但推荐序列与语言序列有本质区别——位置间隔对应的时间差异很大，活跃用户和沉默用户的”下一个位置”代表的时间跨度可能差几个数量级。</p>
+<p><strong>动机</strong>：传统多 Token 预测（如 LLM 中的 multi-token prediction）在位置索引上预测 \(t+1, t+2, \ldots\)，但推荐序列与语言序列有本质区别——位置间隔对应的时间差异很大，活跃用户和沉默用户的”下一个位置”代表的时间跨度可能差几个数量级。</p>
 
-<p><strong>方案</strong>：以<strong>时间偏移</strong> $\delta$（如当前时刻、30 秒后、1 分钟后、3 分钟后等）而非位置偏移为条件，单个参数化的输出头就能生成多个时间维度上的预测：</p>
+<p><strong>方案</strong>：以<strong>时间偏移</strong> \(\delta\)（如当前时刻、30 秒后、1 分钟后、3 分钟后等）而非位置偏移为条件，单个参数化的输出头就能生成多个时间维度上的预测：</p>
 
 \[\hat{\mathbf{i}}_{u,t+\delta} = O(\mathbf{h}_{u,t}, \mathbf{c}_1, \ldots, \mathbf{c}_k, \mathbf{e}_{\delta})\]
 
-<p>推理时，在每个自回归步骤中并行生成 $k$ 个不同时间偏移的物品表示，将原本需要 $k$ 次串行生成的开销压缩为 1 次。</p>
+<p>推理时，在每个自回归步骤中并行生成 \(k\) 个不同时间偏移的物品表示，将原本需要 \(k\) 次串行生成的开销压缩为 1 次。</p>
 
 <h3 id="34-输入序列表示">3.4 输入序列表示</h3>
 
-<p>每个交互元组 $(i_j, a_j, s_j, t_j)$ 被转化为如下表示后拼接：</p>
+<p>每个交互元组 \((i_j, a_j, s_j, t_j)\) 被转化为如下表示后拼接：</p>
 
 <p><strong>Pin 嵌入</strong>：</p>
 <ul>
   <li>语义特征：使用预训练的 OmniSage 多模态嵌入（融合视觉、文字、图-板关系）</li>
-  <li>ID 嵌入：每个 Pin ID 通过 $k$ 个 Hash 函数映射到 $k$ 个维度为 $d/k$ 的嵌入表，拼接后形成 $d$ 维稀疏 ID 嵌入（总参数约 100 亿）</li>
+  <li>ID 嵌入：每个 Pin ID 通过 \(k\) 个 Hash 函数映射到 \(k\) 个维度为 \(d/k\) 的嵌入表，拼接后形成 \(d\) 维稀疏 ID 嵌入（总参数约 100 亿）</li>
   <li>两者拼接后过 2-3 层 MLP + L2 归一化</li>
 </ul>
 
@@ -113,13 +113,13 @@ arXiv：2504.10507v4</p>
 
 <h3 id="35-训练目标intra-feed-relaxation">3.5 训练目标：Intra-Feed Relaxation</h3>
 
-<p>标准的 next-item 预测假设严格的位置依赖，即 $t$ 位置只预测 $t+1$ 的物品。但在 Pinterest 这类信息流平台，一个 Feed 页面内的物品是整体展示的，用户选择交互哪个物品有一定随机性，严格的位置依赖不符合实际。</p>
+<p>标准的 next-item 预测假设严格的位置依赖，即 \(t\) 位置只预测 \(t+1\) 的物品。但在 Pinterest 这类信息流平台，一个 Feed 页面内的物品是整体展示的，用户选择交互哪个物品有一定随机性，严格的位置依赖不符合实际。</p>
 
 <p>论文引入 <strong>Intra-Feed Relaxation</strong>：将同一 Feed Session 内的所有后续交互都视为有效预测目标，取损失最小的那个作为训练信号：</p>
 
 \[L_\theta^{\text{feed}}(H(u, t_{\max})) = \frac{1}{|H(u, t_{\max})|} \sum_{t_j} \min_{i \in T_{t_j}^{\text{feed}}} L_s(\hat{\mathbf{i}}_{u,t_j}, i)\]
 
-<p>其中 $T_{t_j}^{\text{feed}}$ 是同一 Feed Session 内 $t_j$ 之后的所有交互物品集合。</p>
+<p>其中 \(T_{t_j}^{\text{feed}}\) 是同一 Feed Session 内 \(t_j\) 之后的所有交互物品集合。</p>
 
 <p>相似度计算使用 Sampled Softmax，带 Count-Min Sketch 偏差修正：</p>
 
@@ -135,7 +135,7 @@ arXiv：2504.10507v4</p>
 
 <h3 id="42-预算分配budget-allocation">4.2 预算分配（Budget Allocation）</h3>
 
-<p>对结果条件化变体，根据业务方预设的分配比例 $\mathcal{B}$（如 Repin 占 50%、Grid Click 占 30%、外链点击占 10%），为每个条件类型分配 ANN 检索的候选数量，最终合并为完整候选集。</p>
+<p>对结果条件化变体，根据业务方预设的分配比例 \(\mathcal{B}\)（如 Repin 占 50%、Grid Click 占 30%、外链点击占 10%），为每个条件类型分配 ANN 检索的候选数量，最终合并为完整候选集。</p>
 
 <h3 id="43-嵌入压缩embedding-compression">4.3 嵌入压缩（Embedding Compression）</h3>
 
