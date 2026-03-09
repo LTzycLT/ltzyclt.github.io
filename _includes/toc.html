@@ -12,26 +12,20 @@
 </aside>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
   const content = document.querySelector('.page__content');
   const tocMenu = document.getElementById('toc__menu');
   const tocWrapper = document.querySelector('.toc-wrapper');
 
   if (!content || !tocMenu) return;
 
-  // Find all h2 and h3 headers in the content
   const headers = content.querySelectorAll('h2, h3');
 
-  if (headers.length === 0) {
-    return;
-  }
+  if (headers.length === 0) return;
 
-  // Show TOC only when there are headers
-  if (tocWrapper) tocWrapper.style.display = 'block';
+  tocWrapper.style.display = 'block';
 
-  // Generate TOC
   headers.forEach(function(header, index) {
-    // Add ID to header if not present
     if (!header.id) {
       header.id = 'section-' + index;
     }
@@ -44,12 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
     a.textContent = header.textContent;
     a.className = 'toc__link';
 
-    // Add click event for smooth scrolling
     a.addEventListener('click', function(e) {
       e.preventDefault();
       const target = document.getElementById(header.id);
       if (target) {
-        const offset = 80; // Account for fixed header
+        const offset = 80;
         const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
         window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         history.pushState(null, null, '#' + header.id);
@@ -60,18 +53,15 @@ document.addEventListener('DOMContentLoaded', function() {
     tocMenu.appendChild(li);
   });
 
-  // Highlight active section on scroll
   const tocLinks = tocMenu.querySelectorAll('.toc__link');
   const headerElements = Array.from(headers);
 
   function updateActiveToc() {
     const scrollPos = window.scrollY + 100;
-
     headerElements.forEach(function(header, index) {
       const headerTop = header.getBoundingClientRect().top + window.pageYOffset;
       const nextHeader = headerElements[index + 1];
       const nextHeaderTop = nextHeader ? nextHeader.getBoundingClientRect().top + window.pageYOffset : Infinity;
-
       if (scrollPos >= headerTop && scrollPos < nextHeaderTop) {
         tocLinks.forEach(function(link) { link.classList.remove('active'); });
         if (tocLinks[index]) tocLinks[index].classList.add('active');
@@ -81,6 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.addEventListener('scroll', updateActiveToc);
   updateActiveToc();
-});
+})();
 </script>
 {% endif %}
