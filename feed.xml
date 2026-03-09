@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-09T11:00:06+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">PinRec：面向工业级推荐系统的结果条件化多 Token 生成式召回</title><link href="https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval/" rel="alternate" type="text/html" title="PinRec：面向工业级推荐系统的结果条件化多 Token 生成式召回" /><published>2026-03-09T00:00:00+00:00</published><updated>2026-03-09T00:00:00+00:00</updated><id>https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval</id><content type="html" xml:base="https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://ltzyclt.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ltzyclt.github.io/" rel="alternate" type="text/html" /><updated>2026-03-09T11:41:37+00:00</updated><id>https://ltzyclt.github.io/feed.xml</id><title type="html">ychzhou</title><subtitle>personal description</subtitle><author><name>ychzhou</name><email>ltzyclt@gmail.com</email></author><entry><title type="html">PinRec：面向工业级推荐系统的结果条件化多 Token 生成式召回</title><link href="https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval/" rel="alternate" type="text/html" title="PinRec：面向工业级推荐系统的结果条件化多 Token 生成式召回" /><published>2026-03-09T00:00:00+00:00</published><updated>2026-03-09T00:00:00+00:00</updated><id>https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval</id><content type="html" xml:base="https://ltzyclt.github.io/paper%20reading/generative%20recommendation/pinrec-generative-retrieval/"><![CDATA[<blockquote>
   <p>论文：PinRec: Outcome-Conditioned, Multi-Token Generative Retrieval for Industry-Scale Recommendation Systems
 机构：Pinterest
 发表：2025 年
@@ -60,6 +60,10 @@ arXiv：2504.10507v4</p>
 <hr />
 
 <h2 id="三pinrec-模型架构">三、PinRec 模型架构</h2>
+
+<p><img src="/images/2504_10507v4/page_1_Figure_0.jpeg" alt="PinRec 整体建模结构" /></p>
+
+<p><em>图：PinRec 整体建模结构，展示了结果条件化与多 Token 并行生成</em></p>
 
 <h3 id="31-transformer-decoder-骨架">3.1 Transformer Decoder 骨架</h3>
 
@@ -144,6 +148,10 @@ arXiv：2504.10507v4</p>
 <hr />
 
 <h2 id="五工程架构">五、工程架构</h2>
+
+<p><img src="/images/2504_10507v4/page_4_Figure_9.jpeg" alt="PinRec 线上服务流程" /></p>
+
+<p><em>图：PinRec 线上服务流程，包含信号获取、ID 嵌入、自回归推断、Faiss 检索四个阶段</em></p>
 
 <h3 id="51-信号获取lambda-架构">5.1 信号获取（Lambda 架构）</h3>
 
@@ -247,9 +255,17 @@ arXiv：2504.10507v4</p>
 
 <h3 id="63-结果条件化的可控性验证">6.3 结果条件化的可控性验证</h3>
 
+<p><img src="/images/2504_10507v4/page_6_Figure_9.jpeg" alt="按结果类型条件化的召回提升" /></p>
+
+<p><em>图：按结果类型条件化的召回提升，正确匹配时收益最大，错误匹配时出现下降</em></p>
+
 <p>实验结果表明，当条件化类型与用户真实行为匹配时，Recall 提升最大（如对真实 Repin 样本，条件化 Repin 提升 +1.9%；对 Outbound Click 样本，条件化 Outbound Click 提升 +6.2%）；错误匹配时 Recall 反而下降，这验证了条件化的确实现了差异化的目标导向生成。</p>
 
 <h3 id="64-多-token-生成的效率-效果-tradeoff">6.4 多 Token 生成的效率-效果 Tradeoff</h3>
+
+<p><img src="/images/2504_10507v4/page_6_Figure_11.jpeg" alt="每步生成 Token 数量与 Recall、多样性、延迟的关系" /></p>
+
+<p><em>图：每步生成 Token 数量与 Recall、多样性、延迟的关系</em></p>
 
 <p>在保持总生成嵌入数不变的前提下，每步生成更多 Token 带来：</p>
 <ul>
