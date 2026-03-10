@@ -2,8 +2,8 @@
 title: "TIGER：用生成式检索重新定义序列推荐"
 date: 2026-03-09
 categories:
-  - Paper Reading
-  - Generative Recommendation
+  - paper-reading
+  - generative-recommendation
 tags:
   - TIGER
   - Semantic ID

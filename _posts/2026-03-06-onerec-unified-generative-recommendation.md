@@ -2,11 +2,11 @@
 title: "OneRec: 首个工业级端到端生成式推荐系统"
 date: 2026-03-06
 categories:
-  - Paper Reading
-  - Generative Recommendation
+  - paper-reading
+  - generative-recommendation
 tags:
   - OneRec
-  - Generative Recommendation
+  - generative-recommendation
   - DPO
   - Kuaishou
   - End-to-End

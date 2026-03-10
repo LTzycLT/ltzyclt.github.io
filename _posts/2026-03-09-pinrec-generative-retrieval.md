@@ -2,8 +2,8 @@
 title: "PinRec：面向工业级推荐系统的结果条件化多 Token 生成式召回"
 date: 2026-03-09
 categories:
-  - Paper Reading
-  - Generative Recommendation
+  - paper-reading
+  - generative-recommendation
 tags:
   - PinRec
   - Generative Retrieval
