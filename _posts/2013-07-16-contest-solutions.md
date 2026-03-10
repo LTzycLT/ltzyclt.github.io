@@ -8,7 +8,7 @@ tags:
   - shortest path
 ---
 
-## Problem 1: Cut the rope II
+# Problem 1: Cut the rope II
 
 **题意:** 把长度为L的线段进行分割，分割后每一段都不相同的方案数。L<=50000
 
@@ -24,7 +24,7 @@ dp[i][j][k]  i<=320,j<=50000 k<2
 
 复杂度: 320*50000
 
-## Problem 2: Shortest Path
+# Problem 2: Shortest Path
 
 **题意:** 求从1到n边长度严格递增的最短路。
 

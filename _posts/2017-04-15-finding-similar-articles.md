@@ -14,15 +14,15 @@ I will tell about three of them in this article:
 - [MinHash](https://en.wikipedia.org/wiki/MinHash)
 - [LSHForest](http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.LSHForest.html)
 
-## SimHash
+# SimHash
 
 SimHash is a well-known algorithm which is applied by Google in its similar webpage detection.
 
-## MinHash
+# MinHash
 
 pass (to be continued...)
 
-## LSHForest
+# LSHForest
 
 The first time I saw this name is when I was browsing the guideline of sklearn.
 
