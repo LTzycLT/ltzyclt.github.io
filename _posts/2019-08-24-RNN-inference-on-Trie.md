@@ -2,7 +2,7 @@
 title: "RNN Inference on Trie"
 date: 2019-08-24
 categories:
-  - 技术
+  - tech
 tags:
   - RNN
   - Trie

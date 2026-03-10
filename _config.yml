@@ -243,6 +243,11 @@ collections:
 
 # These settings control how pages and collections are included in the site
 defaults:
+  # files/ - exclude from sitemap (placeholder PDFs etc.)
+  - scope:
+      path: "files"
+    values:
+      sitemap: false
   # _posts
   - scope:
       path: ""

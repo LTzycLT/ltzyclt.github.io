@@ -2,10 +2,10 @@
 title: "Meta HSTU: 生成式推荐系统的实践"
 date: 2026-03-06
 categories:
-  - 技术
-  - 推荐系统
+  - tech
+  - recommendation
 tags:
-  - 生成式推荐
+  - generative-recommendation
   - HSTU
   - Meta
   - Transformer
