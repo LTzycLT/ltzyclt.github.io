@@ -8,17 +8,27 @@ redirect_from:
   - /about.html
 ---
 
-I am an algorithm researcher at Tencent, based in Shanghai. My research interests include recommendation systems, natural language processing, and machine learning applications in advertising and content platforms.
+I am an algorithm researcher at Tencent Ads, based in Shanghai. My research interests span recommender systems, AIGC, and computational advertising.
 
 ## Research Interests
 
-- **Recommender Systems**: Deep learning-based recommendation algorithms, user behavior modeling
-- **Natural Language Processing**: Dialogue systems, text similarity, information retrieval
-- **Computational Advertising**: CTR prediction, ad ranking, user intent understanding
+- **Generative Recommendation**: Autoregressive item generation, semantic ID learning, LLM-based retrieval
+- **AIGC for Advertising**: Image generation, stylized synthesis, video editing
+- **Ad Retrieval & Ranking**: LTR, multi-interest modeling, long-sequence user behavior modeling, ad CTR prediction
+- **Ad Inventory & Data**: Distributed retrieval, inventory estimation, large-scale ad data systems
+- **Input Method Engine**: Multilingual language modeling, keystroke error correction, gesture/swipe input, cross-language support
 
-## Background
+## Awards
 
-Before joining Tencent, I participated in competitive programming contests (ACM-ICPC, TopCoder, Codeforces) and developed strong algorithmic problem-solving skills. This background continues to influence my approach to research and system design.
+- 🥈 2012 ACM/ICPC Asia Regional, Tianjin — Silver Medal
+- 🥈 2012 ACM/ICPC Asia Regional, Hangzhou — Silver Medal
+- 🥈 2013 ACM/ICPC Asia Regional, Hangzhou — Silver Medal
+- 🥇 2013 ACM/ICPC Asia Regional, Nanjing — **Gold Medal**
+- 🏆 2015 Cootek Hackmarathon — Rank 1
+- 🏆 2018 CCIR Recommendation Competition — Rank 1
+- 🎖️ 2019 Tencent CDG Cool Code — Rank 2
+- 🏅 2021 TPC (Tencent Programming Contest) — Top 10
+- 🏅 2022 TPC (Tencent Programming Contest) — Top 10
 
 ## Competitive Programming Profiles
 

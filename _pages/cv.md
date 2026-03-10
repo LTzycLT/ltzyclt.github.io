@@ -9,56 +9,41 @@ redirect_from:
 
 {% include base_path %}
 
-Education
+Work Experience
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+**Tencent Ads** · Algorithm Researcher · Shanghai (2018 – present)
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* *Generative Recommendation* (2025.8 – present)
+  * Applying generative retrieval to the ads recommendation pipeline.
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
+* *AIGC Creative Generation* (2023 – 2025.8)
+  * Built multi-model AIGC code frameworks covering image generation, image understanding, and video editing; supported online serving and API for dozens of models.
+  * **Product poster generation**: Background generation model + adaptive marketing element rendering, producing diverse high-quality posters for e-commerce advertisers while preserving the product subject.
+  * **Stylized image synthesis**: Learned client creative styles to build personalized image generation models for high-demand advertisers.
+  * Promoted AIGC generation features into the final-stage ranking model to improve AI creative delivery.
+  * Monitored and optimized AI creative audit pass rate, fingerprint duplication rate, and automated trigger volume.
+
+* *Retrieval Systems* (2021 – 2022)
+  * Led next-generation retrieval architecture: collaborated to sunset targeting-based retrieval, establishing an LTR-centric framework with complementary models and precision targeting filters.
+  * LTR model iterations: negative sampling strategies, sample weighting, loss function optimization.
+  * Multi-interest model iteration: introduced long-sequence feature modeling.
+  * Responsible experiments contributed to cumulative GMV lift of 2.2%; core participation contributed 2.0%.
+
+* *Contract Advertising* (2018 – 2020)
+  * Participated in building a distributed retrieval system for contract ad inventory estimation; incorporated freshness, frequency capping, and inventory contention factors to improve overall sellable inventory rate.
+
+---
+
+**TouchPal (NYSE: COOL)** · Algorithm Engineer (2014 – 2017)
+
+* **Multilingual language modeling**: Built ngram LM pipeline (crawling → corpus cleaning → n-gram counting → smoothing); later upgraded to LSTM deep model. Achieved candidate word prediction within 50ms on mobile devices.
+* **Key-press error correction**: Designed a correction mechanism combining key press position heatmaps with the language model. Outperformed Nuance (then the leading international IME) in evaluations by multiple OEM partners.
+
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
-
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+* **Machine Learning**: Deep learning, LTR, multi-interest modeling, generative retrieval, sequence-to-sequence
+* **AIGC**: Diffusion models, image generation, video editing, style transfer, model serving
+* **Systems**: Distributed retrieval, online inference serving, large-scale feature engineering
+* **Languages**: Python, C++
+* **Competitive Programming**: ACM-ICPC, Codeforces (handle: _LT_zyc), AtCoder (handle: zyczyc)
