@@ -1,67 +1,24 @@
+---
+layout: none
+sitemap: false
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+    {% unless post.sitemap == false %}
   <url>
-    <loc>https://ltzyclt.github.io/</loc>
+    <loc>{{ site.url }}{{ post.url }}</loc>
+    {% if post.date %}
+    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    {% endif %}
   </url>
+    {% endunless %}
+  {% endfor %}
+  {% for page in site.pages %}
+    {% unless page.sitemap == false or page.url contains '/files/' or page.url contains 'talkmap' or page.url contains 'google' %}
   <url>
-    <loc>https://ltzyclt.github.io/cv/</loc>
+    <loc>{{ site.url }}{{ page.url }}</loc>
   </url>
-  <url>
-    <loc>https://ltzyclt.github.io/tags/</loc>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/categories/</loc>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/RNN-inference-on-Trie/</loc>
-    <lastmod>2019-08-24</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/%E6%8A%80%E6%9C%AF/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/meta-hstu-generative-recommendation/</loc>
-    <lastmod>2026-03-06</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/paper-reading/generative-recommendation/onerec-unified-generative-recommendation/</loc>
-    <lastmod>2026-03-06</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/survey-on-dialogue-system/</loc>
-    <lastmod>2018-01-15</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/finding-similar-articles/</loc>
-    <lastmod>2017-04-15</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/ssist-day1/</loc>
-    <lastmod>2017-06-15</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/ssist-day2/</loc>
-    <lastmod>2017-06-15</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/ssist-day3/</loc>
-    <lastmod>2017-06-15</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/cf-338e-optimize/</loc>
-    <lastmod>2013-08-18</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/digit-dp/</loc>
-    <lastmod>2013-08-17</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/suffix-automation/</loc>
-    <lastmod>2013-08-06</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/hdu-4622-reincarnation/</loc>
-    <lastmod>2013-07-31</lastmod>
-  </url>
-  <url>
-    <loc>https://ltzyclt.github.io/contest-solutions/</loc>
-    <lastmod>2013-07-16</lastmod>
-  </url>
+    {% endunless %}
+  {% endfor %}
 </urlset>
