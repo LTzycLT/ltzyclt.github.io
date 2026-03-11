@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ltzyclt.github.io/sitemap_v1.xml
