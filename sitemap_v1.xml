@@ -175,10 +175,6 @@
     
   
     
-  <url>
-    <loc>https://ltzyclt.github.io/assets/css/main.css</loc>
-  </url>
-    
   
     
   
@@ -250,10 +246,6 @@
   
     
   
-    
-  <url>
-    <loc>https://ltzyclt.github.io/redirects.json</loc>
-  </url>
     
   
     
@@ -529,15 +521,7 @@
     
   
     
-  <url>
-    <loc>https://ltzyclt.github.io/sitemap.xml</loc>
-  </url>
-    
   
-    
-  <url>
-    <loc>https://ltzyclt.github.io/robots.txt</loc>
-  </url>
     
   
 </urlset>
