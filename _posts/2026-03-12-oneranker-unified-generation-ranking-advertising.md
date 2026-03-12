@@ -13,8 +13,6 @@ math: true
 comments: true
 ---
 
-# OneRanker：生成与排序的架构级深度融合
-
 论文：**OneRanker: Unified Generation and Ranking with One Model in Industrial Advertising Recommendation**
 机构：腾讯（微信视频号广告）
 arXiv：2603.02999v2
