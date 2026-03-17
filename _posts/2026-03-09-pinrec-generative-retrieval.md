@@ -2,8 +2,8 @@
 title: "PinRec：Pinterest 如何在 5.5 亿用户上跑通生成式召回"
 date: 2026-03-09
 categories:
-  - Paper Reading
-  - Generative Recommendation
+  - paper-reading
+  - generative-recommendation
 tags:
   - PinRec
   - Generative Retrieval
