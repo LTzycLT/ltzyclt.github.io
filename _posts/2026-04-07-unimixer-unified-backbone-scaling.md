@@ -20,7 +20,7 @@ arXiv 2604.00590 | 快手 | 2025
 
 推荐系统的 Backbone 设计有三条路线，各干各的，互不服气。快手这篇论文做了一件有意思的事：先从理论上证明它们其实是同一个东西的特例，然后在这个统一框架里系统测量哪条路线的参数效率更高。
 
-结论是：TokenMixer 路线赢了，Scaling 指数 0.142，高于 Attention 路线（HSTU）。快手在线 A/B 测试，CAD D1-D30 平均提升 15%。
+结论是：TokenMixer 路线赢了，Scaling 指数 0.142，高于异构 Attention 路线。快手在线 A/B 测试，CAD D1-D30 平均提升 15%。
 
 ---
 
@@ -28,9 +28,9 @@ arXiv 2604.00590 | 快手 | 2025
 
 推荐大模型的 Backbone 设计目前有三条并行技术路线：
 
-**Attention 路线**：把 user/item 特征序列当成 token，用 self-attention 建模 token 间的交互，代表是 Meta/TikTok 的 HSTU（使用 pointwise aggregated attention，非标准 softmax）。计算复杂度 $$O(L^2 d)$$，参数量和表达能力随序列长度增长。
+**Attention 路线**：把 user/item 特征序列当成 token，用异构 self-attention 建模 token 间的交互，代表是 HiFormer、FAT 等工作（使用 field-specific 的 query/key/value projection）。计算复杂度 $$O(L^2 d)$$，参数量和表达能力随序列长度增长。
 
-**TokenMixer 路线**：不用 attention，直接学习 token 间的混合矩阵，快手 RankMixer 属于此类。声称在某些场景下参数效率更高，但理论解释不充分。
+**TokenMixer 路线**：不用 attention，直接学习 token 间的混合矩阵，字节 RankMixer 属于此类。声称在某些场景下参数效率更高，但理论解释不充分。
 
 **FM 路线**：源自经典因子分解机，DCNV2、AutoInt 等方法的变体。关注特征间的高阶交互，而非 token 间的顺序关系。
 
@@ -138,7 +138,6 @@ FFN 部分将标准的共享权重 SwiGLU 替换为 Pertoken SwiGLU：每个 tok
 | 方法 | 参数量 | AUC 提升 vs 基线 |
 |------|--------|-----------------|
 | 基线 | — | 0% |
-| HSTU | — | +0.3167% |
 | RankMixer | — | +0.4752% |
 | UniMixer | — | +0.7045% |
 | **UniMixing-Lite-4-Blocks** | **84.5M** | **+0.8141%** |
