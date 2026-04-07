@@ -18,29 +18,29 @@ arXiv 2604.00590 | 快手 | 2025
 
 ---
 
-推荐系统的 Backbone 设计有三条路线，各干各的，互不服气。快手这篇论文做了一件有意思的事：先从理论上证明它们其实是同一个东西的特例，然后在这个统一框架里系统测量哪条路线的参数效率更高。
+推荐系统的 Backbone 设计有三条路线——Attention、TokenMixer、FM——各干各的，互不服气。快手这篇论文做了一件有意思的事：先从理论上证明它们其实是同一个东西的特例，然后在这个统一框架里系统测量哪条路线的参数效率更高。
 
-结论是：TokenMixer 路线赢了，Scaling 指数 0.142，高于异构 Attention 路线。快手在线 A/B 测试，CAD D1-D30 平均提升 15%。
+结论是：UniMixing-Lite 的 Scaling 指数最高（0.142），高于 RankMixer（0.116）和所有 Attention 路线基线。快手在线 A/B 测试，CAD D1-D30 平均提升 15%。
 
 ---
 
-## 背景：三条路线，各干各的
+# 背景：三条路线，各干各的
 
 推荐大模型的 Backbone 设计目前有三条并行技术路线：
 
-**Attention 路线**：把 user/item 特征序列当成 token，用异构 self-attention 建模 token 间的交互，代表是 HiFormer、FAT 等工作（使用 field-specific 的 query/key/value projection）。计算复杂度 $$O(L^2 d)$$，参数量和表达能力随序列长度增长。
+**Attention 路线**：把 user/item 特征序列当成 token，用 token 专属的 Q/K/V 投影矩阵做异构注意力，代表工作是 HiFormer（显式建模高阶交互）和 FAT（注入 field-aware 交互先验）。计算复杂度 $$O(L^2 d)$$，参数量和表达能力随序列长度增长。
 
-**TokenMixer 路线**：不用 attention，直接学习 token 间的混合矩阵，字节 RankMixer 属于此类。声称在某些场景下参数效率更高，但理论解释不充分。
+**TokenMixer 路线**：不用 attention，改用非参数化的固定规则做 token 间混合，字节 RankMixer 属于此类。在相近 FLOPs 下 CTR 预测性能有竞争力，但这类操作背后缺乏严格的理论解释。
 
-**FM 路线**：源自经典因子分解机，DCNV2、AutoInt 等方法的变体。关注特征间的高阶交互，而非 token 间的顺序关系。
+**FM 路线**：源自因子分解机，在每层堆叠 FM 风格的交互块（Factorization Machine Block）来建模高阶交互，代表工作是 Wukong。关注特征间的配对交互，但低阶交互假设在参数量增大时限制了 Scaling 上限。
 
 三条路线各有独立的论文体系，也有独立的工程实践。它们的关系没人清楚：等价吗？哪个参数效率更高？UniMixer 从理论层面将这个问题正式化，并给出实验层面的答案。
 
 ---
 
-## 核心方法
+# 核心方法
 
-### 第一步：把 TokenMixer 写成矩阵乘法
+## 第一步：把 TokenMixer 写成矩阵乘法
 
 论文的起点是一个观察：任何 TokenMixer 操作（对 $$L$$ 个 token，每个维度为 $$d$$ 的矩阵 $$X \in \mathbb{R}^{L \times d}$$）都可以等价地写成：
 
@@ -50,7 +50,7 @@ $$\text{TokenMixer}(X) = \text{reshape}(W^{\text{perm}} \cdot \text{flatten}(X))
 
 问题在于 $$W^{\text{perm}}$$ 的维度是 $$Ld \times Ld$$，参数量 $$O(L^2 d^2)$$，直接学习不可行。
 
-### 第二步：Kronecker 分解降参数
+## 第二步：Kronecker 分解降参数
 
 对 $$W^{\text{perm}}$$ 做 Kronecker 分解：
 
@@ -64,7 +64,7 @@ $$\text{UniMixing}(X) = \text{reshape}\left(G \cdot \begin{bmatrix} x_1 W_B^1 \\
 
 引入 B 的动机：如果没有 block 分组，全局混合 $$G$$ 的复杂度是 $$O(L^2)$$ ——序列长时代价太高。分成 B 个 block 后，全局矩阵只需要在 block 间交互（维度从 $$L \times L$$ 缩减），加上 block 内局部交互，总复杂度降至 $$O(L^2/B + LB)$$，当 $$B = L^{2/3}$$ 时最优约为 $$O(L^{4/3})$$。
 
-### 第三步：证明三条路线是同一框架的特例
+## 第三步：证明三条路线是同一框架的特例
 
 这个（全局矩阵 $$G$$，局部矩阵 $$W_B^i$$）的分解，同时覆盖了三条路线：
 
@@ -78,7 +78,7 @@ $$\text{UniMixing}(X) = \text{reshape}\left(G \cdot \begin{bmatrix} x_1 W_B^1 \\
 
 ![三种 Backbone 在 UniMixing 框架下的统一表示](/images/2604_00590v2/page_4_Figure_1.jpeg)
 
-### UniMixing 模块：让 $$W_G$$ 接近合法置换矩阵
+## UniMixing 模块：让 $$W_G$$ 接近合法置换矩阵
 
 基于上面的框架，UniMixing 让 $$W_G$$ 和 $$W_B^i$$ 都变成可学习参数，并加入三个约束：
 
@@ -90,7 +90,7 @@ $$\text{UniMixing}(X) = \text{reshape}\left(G \cdot \begin{bmatrix} x_1 W_B^1 \\
 
 ![UniMixing 学到的 Mixing Weights 可视化](/images/2604_00590v2/page_5_Figure_0.jpeg)
 
-### UniMixing-Lite：进一步压缩参数
+## UniMixing-Lite：进一步压缩参数
 
 标准 UniMixing 中 $$W_B^i$$ 对每个 block 独立，参数随 block 数线性增长。UniMixing-Lite 用两种方式压缩：
 
@@ -104,7 +104,7 @@ $$W_B^i = \sum_{j=1}^b \alpha_{ij} E_j$$
 
 实验显示，UniMixing-Lite 的 Scaling 指数（0.142）高于标准 UniMixer（0.132）和 RankMixer（0.116）。
 
-### SiameseNorm：让模型在深度方向可扩展
+## SiameseNorm：让模型在深度方向可扩展
 
 加深层数本该提升性能，但 RankMixer 实验发现加深反而下降。根源在于 Pre-Norm 和 Post-Norm 的根本矛盾：
 
@@ -123,28 +123,40 @@ $$\bar{X}_{\ell+1} = \text{RMSNorm}(\bar{X}_\ell + O_\ell), \quad \bar{Y}_{\ell+
 
 实验验证：配合 SiameseNorm 后，4-Block UniMixing-Lite 比 2-Block 持续提升；而 RankMixer 加深后性能反而下降。
 
-### Pertoken SwiGLU FFN
+## Pertoken SwiGLU FFN
 
 FFN 部分将标准的共享权重 SwiGLU 替换为 Pertoken SwiGLU：每个 token 位置有独立的 FFN 权重，建模不同位置特征的异质性（推荐特征中不同 token 代表不同语义域，用同一 FFN 处理可能不合适）。代价是参数量随序列长度线性增长，适用于序列长度固定的场景。
 
 ---
 
-## 实验
+# 实验
 
-### 主要结果
+## 主要结果
 
-在快手广告投放数据集（7亿+用户样本，预测用户次日留存）上：
+在快手广告投放数据集（7亿+用户样本，预测用户次日留存）上，与约 100M 参数量的 SOTA 基线对比：
 
-| 方法 | 参数量 | AUC 提升 vs 基线 |
-|------|--------|-----------------|
-| 基线 | — | 0% |
-| RankMixer | — | +0.4752% |
-| UniMixer | — | +0.7045% |
-| **UniMixing-Lite-4-Blocks** | **84.5M** | **+0.8141%** |
+| 方法 | 参数量 | FLOPs/Batch | ΔAUC | ΔUAUC |
+|------|--------|-------------|------|-------|
+| Heterogeneous Attention（基线）[1] | 132.7M | 1.68T | — | — |
+| HiFormer [1] | 107.5M | 1.37T | −0.2892% | −0.2743% |
+| Wukong [6] | 107.1M | 1.40T | −0.0100% | +0.0020% |
+| FAT [2] | 138.4M | 1.83T | +0.0306% | +0.0451% |
+| RankMixer [4] | 135.5M | 1.68T | +0.4752% | +0.5109% |
+| TokenMixer-Large [5] | 103.3M | 1.27T | +0.3833% | +0.4111% |
+| UniMixer-2-Blocks 67.5M | 67.5M | 2.07T | +0.5193% | +0.5502% |
+| UniMixer-2-Blocks 101.5M | 101.5M | 2.50T | +0.5661% | +0.6154% |
+| UniMixing-Lite-2-Blocks 42.4M | 42.4M | 2.17T | +0.6544% | +0.6910% |
+| UniMixing-Lite-2-Blocks 76.2M | 76.2M | 2.60T | +0.6824% | +0.7386% |
+| UniMixing-Lite-4-Blocks 38.2M | 38.2M | 1.26T | +0.7750% | +0.8190% |
+| **UniMixing-Lite-4-Blocks 84.5M** | **84.5M** | **4.24T** | **+0.8141%** | **+0.8701%** |
 
-UniMixing-Lite-4-Blocks 比 RankMixer 高约 0.34 个百分点。
+几点对比：
 
-### Scaling 曲线
+- **参数效率**：UniMixing-Lite-4-Blocks 84.5M 以更少的参数（84.5M vs 132.7M 基线）实现 +0.8141% AUC，但计算量明显更高（4.24T vs 1.68T）——参数效率优，FLOPs 效率有所取舍。
+- **TokenMixer 路线内部**：RankMixer（+0.4752%）优于 TokenMixer-Large（+0.3833%），两者参数量相近，但 RankMixer 使用了更多 FLOPs。
+- **深度 vs 宽度**：UniMixing-Lite-4-Blocks 38.2M（+0.7750%）比 UniMixing-Lite-2-Blocks 76.2M（+0.6824%）更好，参数量仅一半，FLOPs 也更低（1.26T vs 2.60T）——说明在深度方向 Scaling 的效率高于宽度方向，且 4-Block 架构在计算效率上同样更优。
+
+## Scaling 曲线
 
 三种方法的 Scaling Law 指数（$$\text{AUC} \propto N^\alpha$$，$$\alpha$$ 越大代表同等参数量下性能增益越高）：
 
@@ -156,7 +168,7 @@ UniMixing-Lite 每倍参数量带来的 AUC 提升最多。
 
 ![Scaling 曲线：参数量与 AUC 的关系](/images/2604_00590v2/page_10_Figure_3.jpeg)
 
-### 消融实验
+## 消融实验
 
 各组件的贡献（相对于完整 UniMixer 6.57M 的 $$\Delta$$AUC）：
 
@@ -168,35 +180,35 @@ UniMixing-Lite 每倍参数量带来的 AUC 提升最多。
 | w/o Block-Specific Local Mixing Weight | −0.0436% |
 | SiameseNorm → Post Norm | −0.0273% |
 
-温度退火策略对性能影响最显著，幅度超过所有正则化约束之和。Block-Specific 局部矩阵的贡献（-0.0436%）也值得关注：它说明让不同 block 有各自的混合模式，而非共享一个通用矩阵，对性能有实际收益。SiameseNorm 替换为 Post Norm 后 AUC 下降 -0.0273%，看似不大，但深度 Scaling 实验（Figure 4）显示它对 4-Block 架构的意义远不止于这个数字。
+温度退火策略对性能影响最显著，幅度超过所有正则化约束之和。Block-Specific 局部矩阵贡献 -0.0436%，说明让不同 block 有各自的混合模式，而非共享一个通用矩阵，对性能有实际收益。SiameseNorm 替换为 Post Norm 后 AUC 下降 -0.0273%，看似不大，但深度 Scaling 实验（Figure 4）显示它对 4-Block 架构的意义远不止于这个数字。
 
-### 可视化
+## 可视化
 
 论文可视化了 $$\bar{W}_G$$ 和 $$\bar{W}_B^i$$ 在 $$\tau=1$$（高温）和 $$\tau=0.05$$（低温）下的分布：低温时两个矩阵都更稀疏、更尖锐，呈现出更清晰的交互模式——这与温度退火的设计预期一致。
 
 ![W_G 与 W_B 的可视化分析](/images/2604_00590v2/page_11_Figure_1.jpeg)
 
-### 在线 A/B 实验
+## 在线 A/B 实验
 
 在快手多个广告投放场景上线测试，用 CAD（Cumulative Active Days，D1-D30 累积活跃天数，衡量用户留存）作为指标：D1-D30 平均提升 15%。
 
 ---
 
-## 结论
+# 结论
 
 UniMixer 通过等价参数化和 Kronecker 分解，将推荐系统 Backbone 的三条 Scaling 路线统一到同一框架。在这个框架下，UniMixing-Lite（Basis-Composed 局部 + 低秩全局）配合 SiameseNorm 和温度退火，实现了最高的参数效率（Scaling 指数 0.142）和深度扩展能力，在快手工业系统上相比 RankMixer 有显著的 AUC 和业务指标提升。
 
 ---
 
-## 思考与延伸
+# 思考与延伸
 
 **关于温度退火的实质**
 
-消融显示温度系数的贡献（-0.1645%）远大于双随机性和对称性约束（合计约 -0.06%）。这说明"接近置换矩阵"这个约束本身的作用，不如"训练过程中逐步稀疏化"的动态机制重要。温度退火更像一个 curriculum learning 方案，而非结构约束——先让模型从软性全局依赖起步，再逐步特化为稀疏的 token 路由。那么一个值得探讨的问题是：这个 curriculum 的最优退火曲线是否与数据量、序列长度有关？论文给出了线性退火的结论，但曲线的形状本身可能还有探索空间。
+消融显示温度系数的贡献（-0.1645%）远大于双随机性和对称性约束（合计约 -0.06%）。这说明"接近置换矩阵"这个约束本身的作用，不如"训练过程中逐步稀疏化"的动态机制重要。温度退火更像一个 curriculum learning 方案，而非结构约束——先让模型从软性全局依赖起步，再逐步特化为稀疏的 token 路由。一个可以进一步研究的问题：这个 curriculum 的最优退火曲线是否与数据量、序列长度有关？论文给出了线性退火的结论，但曲线的形状本身可能还有探索空间。
 
 **关于 Scaling Law 指数的可比性**
 
-论文报告的 $$\alpha$$ 值（0.116、0.132、0.142）是在快手广告投放数据集（用户留存预测）上的测量结果，不同数据集、不同业务特性可能得到完全不同的 $$\alpha$$。这里的 Scaling 比较更像受控环境下的相对效率对比，而不是绝对意义上的 Scaling Law。一个可以探讨的问题是：这些指数在不同规模区间是否稳定？如果参数量从 84.5M 扩展到 1B+，TokenMixer 路线是否仍然保持优势？另外，论文的数据集是广告场景（用户留存），而 RankMixer 的论文场景是内容推荐点击率——两者的 token 语义、序列结构不同，这个因素在多大程度上影响了 Scaling 路线的相对优劣，论文没有讨论。
+论文报告的 $$\alpha$$ 值（0.116、0.132、0.142）是在快手广告投放数据集（用户留存预测）上的测量结果，不同数据集、不同业务特性可能得到完全不同的 $$\alpha$$。这里的 Scaling 比较更像受控环境下的相对效率对比，而不是绝对意义上的 Scaling Law。一个可以探讨的问题是：这些指数在不同规模区间是否稳定？如果参数量从 84.5M 扩展到 1B+，TokenMixer 路线是否仍然保持优势？另外，论文的测试场景是广告投放（用户留存），UniMixer 和 RankMixer 在相同数据集上受控对比，但 Scaling 路线选择的优劣是否会随不同业务场景（广告 vs 内容分发、短序列 vs 长序列）而变化，论文没有讨论。
 
 **关于统一框架的价值**
 
