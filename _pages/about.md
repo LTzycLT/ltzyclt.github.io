@@ -66,6 +66,10 @@ I am an algorithm researcher at Tencent Ads, based in Shanghai. My research inte
 
 </div>
 
+## Open Source Projects
+
+- [**Awesome-Autonomous-Research-Agent**](https://github.com/LTzycLT/Awesome-Autonomous-Research-Agent) — A curated list of resources on autonomous research agents.
+
 ## Blog Posts
 
 You can find my technical blog posts [here](/year-archive/), covering topics from algorithms to machine learning.
