@@ -1,329 +1,706 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://ltzyclt.github.io/contest-solutions/</loc>
-<lastmod>2013-07-16T22:25:05+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/hdu-4622-reincarnation/</loc>
-<lastmod>2013-07-31T13:02:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/suffix-automation/</loc>
-<lastmod>2013-08-06T09:47:01+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/digit-dp/</loc>
-<lastmod>2013-08-17T21:07:34+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/cf-338e-optimize/</loc>
-<lastmod>2013-08-18T20:33:24+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/finding-similar-articles/</loc>
-<lastmod>2017-04-15T15:47:06+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/ssist-day1/</loc>
-<lastmod>2017-06-15T16:04:17+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/ssist-day2/</loc>
-<lastmod>2017-06-15T16:04:21+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/ssist-day3/</loc>
-<lastmod>2017-06-15T16:04:23+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/survey-on-dialogue-system/</loc>
-<lastmod>2018-01-15T16:04:17+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tech/RNN-inference-on-Trie/</loc>
-<lastmod>2019-08-24T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tech/recommendation/meta-hstu-generative-recommendation/</loc>
-<lastmod>2026-03-06T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/paper-reading/generative-recommendation/onerec-unified-generative-recommendation/</loc>
-<lastmod>2026-03-06T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/paper-reading/generative-recommendation/pinrec-generative-retrieval/</loc>
-<lastmod>2026-03-09T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/paper-reading/generative-recommendation/tiger-generative-retrieval-recommender/</loc>
-<lastmod>2026-03-09T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/paper-reading/generative-recommendation/ultra-hstu-bending-scaling-law-recommendation/</loc>
-<lastmod>2026-03-10T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/paper%20reading/generative%20recommendation/oneranker-unified-generation-ranking-advertising/</loc>
-<lastmod>2026-03-12T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/paper%20reading/ai%20research/autoresearch-karpathy-ai-agent-research/</loc>
-<lastmod>2026-03-19T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/paper%20reading/generative%20recommendation/memgen-gr-generalization-memorization-analysis/</loc>
-<lastmod>2026-03-23T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/paper%20reading/recommendation%20system/uniscale-search-ranking-data-architecture/</loc>
-<lastmod>2026-03-26T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/paper%20reading/recommendation%20systems/unimixer-unified-backbone-scaling/</loc>
-<lastmod>2026-04-07T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/cv/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/portfolio/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/publications/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/talkmap.html</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/talks/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/teaching/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/terms/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/acm/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/algorithm/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/dp/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/shortest-path/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/suffix-array/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/hash/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/suffix-automaton/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/data-structures/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/digit-dp/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/segment-tree/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/text-similarity/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/information-retrieval/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/ssist/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/conference/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/ai/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/dialogue-systems/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/nlp/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/survey/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/rnn/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/trie/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/tensorflow/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/beam-search/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/generative-recommendation/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/hstu/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/meta/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/transformer/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/scaling-law/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/onerec/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/dpo/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/kuaishou/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/end-to-end/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/pinrec/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/generative-retrieval/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/pinterest/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/multi-token/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/outcome-conditioned/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/tiger/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/semantic-id/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/rq-vae/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/sequential-recommendation/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/sparse-attention/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/%E7%94%9F%E6%88%90%E5%BC%8F%E6%8E%A8%E8%8D%90/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/%E5%B9%BF%E5%91%8A%E6%8E%A8%E8%8D%90/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/%E6%8E%92%E5%BA%8F/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/ai-agent/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/llm-training/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/karpathy/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/muon/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/%E8%AE%B0%E5%BF%86%E4%B8%8E%E6%B3%9B%E5%8C%96/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/search-ranking/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/data-scaling/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/industry-system/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/alibaba/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/unimixer/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/tokenmixer/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/kronecker/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/tags/siamesenorm/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/tech/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/recommendation/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/paper-reading/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/generative-recommendation/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/paper-reading/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/generative-recommendation/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/ai-research/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/recommendation-system/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/categories/recommendation-systems/</loc>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/google6a6bd0608a8014ce.html</loc>
-<lastmod>2026-04-10T03:10:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://ltzyclt.github.io/talkmap/map.html</loc>
-<lastmod>2026-04-10T03:10:00+00:00</lastmod>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/paper%20reading/recommendation%20systems/unimixer-unified-backbone-scaling/</loc>
+    
+    <lastmod>2026-04-07T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/paper%20reading/recommendation%20system/uniscale-search-ranking-data-architecture/</loc>
+    
+    <lastmod>2026-03-26T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/paper%20reading/generative%20recommendation/memgen-gr-generalization-memorization-analysis/</loc>
+    
+    <lastmod>2026-03-23T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/paper%20reading/ai%20research/autoresearch-karpathy-ai-agent-research/</loc>
+    
+    <lastmod>2026-03-19T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/paper%20reading/generative%20recommendation/oneranker-unified-generation-ranking-advertising/</loc>
+    
+    <lastmod>2026-03-12T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/paper-reading/generative-recommendation/ultra-hstu-bending-scaling-law-recommendation/</loc>
+    
+    <lastmod>2026-03-10T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/paper-reading/generative-recommendation/tiger-generative-retrieval-recommender/</loc>
+    
+    <lastmod>2026-03-09T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/paper-reading/generative-recommendation/pinrec-generative-retrieval/</loc>
+    
+    <lastmod>2026-03-09T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/paper-reading/generative-recommendation/onerec-unified-generative-recommendation/</loc>
+    
+    <lastmod>2026-03-06T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tech/recommendation/meta-hstu-generative-recommendation/</loc>
+    
+    <lastmod>2026-03-06T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tech/RNN-inference-on-Trie/</loc>
+    
+    <lastmod>2019-08-24T00:00:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/survey-on-dialogue-system/</loc>
+    
+    <lastmod>2018-01-15T16:04:17+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/ssist-day3/</loc>
+    
+    <lastmod>2017-06-15T16:04:23+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/ssist-day2/</loc>
+    
+    <lastmod>2017-06-15T16:04:21+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/ssist-day1/</loc>
+    
+    <lastmod>2017-06-15T16:04:17+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/finding-similar-articles/</loc>
+    
+    <lastmod>2017-04-15T15:47:06+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/cf-338e-optimize/</loc>
+    
+    <lastmod>2013-08-18T20:33:24+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/digit-dp/</loc>
+    
+    <lastmod>2013-08-17T21:07:34+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/suffix-automation/</loc>
+    
+    <lastmod>2013-08-06T09:47:01+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/hdu-4622-reincarnation/</loc>
+    
+    <lastmod>2013-07-31T13:02:00+00:00</lastmod>
+    
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/contest-solutions/</loc>
+    
+    <lastmod>2013-07-16T22:25:05+00:00</lastmod>
+    
+  </url>
+    
+  
+  
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/</loc>
+  </url>
+    
+  
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/</loc>
+  </url>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/cv/</loc>
+  </url>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/portfolio/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/publications/</loc>
+  </url>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/</loc>
+  </url>
+    
+  
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/talks/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/teaching/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/terms/</loc>
+  </url>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/acm/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/algorithm/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/dp/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/shortest-path/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/suffix-array/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/hash/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/suffix-automaton/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/data-structures/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/digit-dp/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/segment-tree/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/text-similarity/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/information-retrieval/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/ssist/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/conference/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/ai/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/dialogue-systems/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/nlp/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/survey/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/rnn/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/trie/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/tensorflow/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/beam-search/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/generative-recommendation/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/hstu/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/meta/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/transformer/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/scaling-law/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/onerec/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/dpo/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/kuaishou/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/end-to-end/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/pinrec/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/generative-retrieval/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/pinterest/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/multi-token/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/outcome-conditioned/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/tiger/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/semantic-id/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/rq-vae/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/sequential-recommendation/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/sparse-attention/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/%E7%94%9F%E6%88%90%E5%BC%8F%E6%8E%A8%E8%8D%90/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/%E5%B9%BF%E5%91%8A%E6%8E%A8%E8%8D%90/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/%E6%8E%92%E5%BA%8F/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/ai-agent/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/llm-training/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/karpathy/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/muon/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/%E8%AE%B0%E5%BF%86%E4%B8%8E%E6%B3%9B%E5%8C%96/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/search-ranking/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/data-scaling/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/industry-system/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/alibaba/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/unimixer/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/tokenmixer/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/kronecker/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/tags/siamesenorm/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/tech/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/recommendation/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/paper-reading/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/generative-recommendation/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/paper-reading/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/generative-recommendation/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/ai-research/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/recommendation-system/</loc>
+  </url>
+    
+  
+    
+  <url>
+    <loc>https://ltzyclt.github.io/categories/recommendation-systems/</loc>
+  </url>
+    
+  
+    
+  
 </urlset>
